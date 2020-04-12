@@ -1,0 +1,1875 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"55 Tasks.c
+[; ;Tasks.c: 55: static EnumSystem_states_t g_system_state_var_t = SYSTEM_IDLE_STATE;
+[c E257 0 1 2 .. ]
+[n E257 . SYSTEM_IDLE_STATE SYSTEM_HEATING_STATE SYSTEM_END_TIME  ]
+"59
+[; ;Tasks.c: 59: static EnumDoor_sensor_t g_door_state_t = DOOR_IS_CLOSED;
+[c E262 0 1 .. ]
+[n E262 . DOOR_IS_OPENED DOOR_IS_CLOSED  ]
+"61
+[; ;Tasks.c: 61: static EnumWeight_sensor_t g_inside_microwave = MICROWAVE_IS_EMPTY;
+[c E266 0 1 .. ]
+[n E266 . MICROWAVE_IS_EMPTY MICROWAVE_HAS_SOMETHING_INSIDE  ]
+"115 ./LCD.h
+[; ;./LCD.h: 115: extern void LCD_SetDisplayPosition(uint8 a_u8position_X , uint8 a_u8position_Y);
+[v _LCD_SetDisplayPosition `(v ~T0 @X0 0 ef2`uc`uc ]
+"101
+[; ;./LCD.h: 101: extern void LCD_SendDataString(uint8* a_u8data_ptr);
+[v _LCD_SendDataString `(v ~T0 @X0 0 ef1`*uc ]
+"159
+[; ;./LCD.h: 159: extern void LCD_ClearScreen(void);
+[v _LCD_ClearScreen `(v ~T0 @X0 0 ef ]
+"88
+[; ;./LCD.h: 88: extern void LCD_SendDataByte(uint8 a_u8data);
+[v _LCD_SendDataByte `(v ~T0 @X0 0 ef1`uc ]
+"158 ./ADC.h
+[; ;./ADC.h: 158: extern void ADC_Start_conversion(void);
+[v _ADC_Start_conversion `(v ~T0 @X0 0 ef ]
+"145
+[; ;./ADC.h: 145: extern uint16 ADC_Read_value(void);
+[v _ADC_Read_value `(us ~T0 @X0 0 ef ]
+"180 Tasks.c
+[; ;Tasks.c: 180:         PWM_DutyCycle(PWM_CHANNEL_1 , 100 - g_u8temperature * 2);
+[c E98 0 1 .. ]
+[n E98 . PWM_CHANNEL_1 PWM_CHANNEL_2  ]
+"107 ./PWM.h
+[; ;./PWM.h: 107: extern void PWM_DutyCycle(EnumPWM_channel_t a_PWM_channel_t , uint8 a_u16PWM_duty_cycle);
+[v _PWM_DutyCycle `(v ~T0 @X0 0 ef2`E98`uc ]
+[v F36 `(v ~T0 @X0 0 tf ]
+"208 Tasks.c
+[; ;Tasks.c: 208:     Scheduler_StartFunction(Welcome_screen_Task , 1 , 2000 , 0 , ONCE);
+[c E23 0 1 .. ]
+[n E23 . ONCE REPEAT  ]
+[c E27 0 1 2 3 .. ]
+[n E27 . SCHEDULER_NOT_AVAILABLE_TICK_TIME_ERROR SCHEDULER_TASKS_QUEUE_IS_FULL_ERROR SCHEDULER_ID_IS_NOT_EXIST_ERROR SCHEDULER_NO_ERROR  ]
+"77 ./scheduler.h
+[; ;./scheduler.h: 77: extern EnumScheduler_Error_t Scheduler_StartFunction(void (*task_function_ptr) (void),
+[v _Scheduler_StartFunction `(E27 ~T0 @X0 0 ef5`*F36`uc`us`us`E23 ]
+"156 ./Tasks.h
+[; ;./Tasks.h: 156: extern void Welcome_screen_Task(void);
+[v _Welcome_screen_Task `(v ~T0 @X0 0 ef ]
+"170
+[; ;./Tasks.h: 170: extern void Home_screen_display(void);
+[v _Home_screen_display `(v ~T0 @X0 0 ef ]
+"143
+[; ;./Tasks.h: 143: extern void Reminding_time_Task(void);
+[v _Reminding_time_Task `(v ~T0 @X0 0 ef ]
+"78
+[; ;./Tasks.h: 78: extern void KeyPad_Task(void);
+[v _KeyPad_Task `(v ~T0 @X0 0 ef ]
+"117
+[; ;./Tasks.h: 117: extern void Weight_Sensor_Task(void);
+[v _Weight_Sensor_Task `(v ~T0 @X0 0 ef ]
+"104
+[; ;./Tasks.h: 104: extern void Door_Sensor_Task(void);
+[v _Door_Sensor_Task `(v ~T0 @X0 0 ef ]
+"91
+[; ;./Tasks.h: 91: extern void Temperature_Task (void);
+[v _Temperature_Task `(v ~T0 @X0 0 ef ]
+"130
+[; ;./Tasks.h: 130: extern void LED_Buzzer_Task(void);
+[v _LED_Buzzer_Task `(v ~T0 @X0 0 ef ]
+"65
+[; ;./Tasks.h: 65: extern void LCD_Task(void);
+[v _LCD_Task `(v ~T0 @X0 0 ef ]
+"241 Tasks.c
+[; ;Tasks.c: 241: {GPIO_WriteOnPin(2u , 7u , 1u);
+[c E46 0 1 .. ]
+[n E46 . GPIO_CORRECT_SET GPIO_UNCORRECT_SET  ]
+"97 ./GPIO.h
+[; ;./GPIO.h: 97: extern EnumGPIO_Status_t GPIO_WriteOnPin(uint8 a_u8port , uint8 a_u8pin , uint8 a_u8value);
+[v _GPIO_WriteOnPin `(E46 ~T0 @X0 0 ef3`uc`uc`uc ]
+"145 ./LCD.h
+[; ;./LCD.h: 145: extern void LCD_DisplaNumber(sint32 a_s32number);
+[v _LCD_DisplaNumber `(v ~T0 @X0 0 ef1`l ]
+"51 ./KeyPad.h
+[; ;./KeyPad.h: 51: extern uint8 KeyPad_get_PressedKey_with_debouncing(void);
+[v _KeyPad_get_PressedKey_with_debouncing `(uc ~T0 @X0 0 ef ]
+"79 ./PWM.h
+[; ;./PWM.h: 79: extern void PWM_Stop(EnumPWM_channel_t a_PWM_channel_t);
+[v _PWM_Stop `(v ~T0 @X0 0 ef1`E98 ]
+"65
+[; ;./PWM.h: 65: extern void PWM_Start(EnumPWM_channel_t a_PWM_channel_t);
+[v _PWM_Start `(v ~T0 @X0 0 ef1`E98 ]
+"125 ./GPIO.h
+[; ;./GPIO.h: 125: extern uint8 GPIO_ReadFromPin(uint8 a_u8port , uint8 a_u8pin);
+[v _GPIO_ReadFromPin `(uc ~T0 @X0 0 ef2`uc`uc ]
+"53 Tasks.c
+[; ;Tasks.c: 53: static uint16 g_u16MicrowaveTime = 0;
+[v _g_u16MicrowaveTime `us ~T0 @X0 1 s ]
+[i _g_u16MicrowaveTime
+-> -> 0 `i `us
+]
+"55
+[; ;Tasks.c: 55: static EnumSystem_states_t g_system_state_var_t = SYSTEM_IDLE_STATE;
+[v _g_system_state_var_t `E257 ~T0 @X0 1 s ]
+[i _g_system_state_var_t
+. `E257 0
+]
+"57
+[; ;Tasks.c: 57: static uint8 g_u8heating_finished_flag = 0;
+[v _g_u8heating_finished_flag `uc ~T0 @X0 1 s ]
+[i _g_u8heating_finished_flag
+-> -> 0 `i `uc
+]
+"59
+[; ;Tasks.c: 59: static EnumDoor_sensor_t g_door_state_t = DOOR_IS_CLOSED;
+[v _g_door_state_t `E262 ~T0 @X0 1 s ]
+[i _g_door_state_t
+. `E262 1
+]
+"61
+[; ;Tasks.c: 61: static EnumWeight_sensor_t g_inside_microwave = MICROWAVE_IS_EMPTY;
+[v _g_inside_microwave `E266 ~T0 @X0 1 s ]
+[i _g_inside_microwave
+. `E266 0
+]
+"63
+[; ;Tasks.c: 63: static uint8 g_u8timer_arr[6] = {0x30 , 0x30 , ':' , 0x30 , 0x30 , '\0'};
+[v _g_u8timer_arr `uc ~T0 @X0 -> 6 `i s ]
+[i _g_u8timer_arr
+:U ..
+-> -> 48 `i `uc
+-> -> 48 `i `uc
+-> -> 58 `ui `uc
+-> -> 48 `i `uc
+-> -> 48 `i `uc
+-> -> 0 `ui `uc
+..
+]
+"65
+[; ;Tasks.c: 65: static uint8 g_u8time_digits = 0;
+[v _g_u8time_digits `uc ~T0 @X0 1 s ]
+[i _g_u8time_digits
+-> -> 0 `i `uc
+]
+"67
+[; ;Tasks.c: 67: static uint8 g_u8keypad_button_val = '_';
+[v _g_u8keypad_button_val `uc ~T0 @X0 1 s ]
+[i _g_u8keypad_button_val
+-> -> 95 `ui `uc
+]
+"69
+[; ;Tasks.c: 69: static uint8 g_u8temperature = 0;
+[v _g_u8temperature `uc ~T0 @X0 1 s ]
+[i _g_u8temperature
+-> -> 0 `i `uc
+]
+"71
+[; ;Tasks.c: 71: static uint8 g_u8old_temp_reading = 100;
+[v _g_u8old_temp_reading `uc ~T0 @X0 1 s ]
+[i _g_u8old_temp_reading
+-> -> 100 `i `uc
+]
+"73
+[; ;Tasks.c: 73: static uint8 g_u8door_change_state_flag = 0;
+[v _g_u8door_change_state_flag `uc ~T0 @X0 1 s ]
+[i _g_u8door_change_state_flag
+-> -> 0 `i `uc
+]
+"75
+[; ;Tasks.c: 75: static uint8 g_u8weight_change_state_flag = 0;
+[v _g_u8weight_change_state_flag `uc ~T0 @X0 1 s ]
+[i _g_u8weight_change_state_flag
+-> -> 0 `i `uc
+]
+"92
+[; ;Tasks.c: 92: static void Display_finishing_message(void)
+[v _Display_finishing_message `(v ~T0 @X0 1 sf ]
+"93
+[; ;Tasks.c: 93: {
+{
+[e :U _Display_finishing_message ]
+[f ]
+"95
+[; ;Tasks.c: 95:     static uint16 u8counter = 0;
+[v F283 `us ~T0 @X0 1 s u8counter ]
+[i F283
+-> -> 0 `i `us
+]
+"97
+[; ;Tasks.c: 97:     if(u8counter == 0)
+[e $ ! == -> F283 `ui -> -> 0 `i `ui 4  ]
+"98
+[; ;Tasks.c: 98:     {
+{
+"99
+[; ;Tasks.c: 99:         LCD_SetDisplayPosition(0 , 1);
+[e ( _LCD_SetDisplayPosition (2 , -> -> 0 `i `uc -> -> 1 `i `uc ]
+"100
+[; ;Tasks.c: 100:         LCD_SendDataString("Timer:");
+[e ( _LCD_SendDataString (1 :s 1C ]
+"101
+[; ;Tasks.c: 101:         LCD_SetDisplayPosition(11 , 1);
+[e ( _LCD_SetDisplayPosition (2 , -> -> 11 `i `uc -> -> 1 `i `uc ]
+"102
+[; ;Tasks.c: 102:         LCD_SendDataString("00:00");
+[e ( _LCD_SendDataString (1 :s 2C ]
+"103
+[; ;Tasks.c: 103:         LCD_SendDataString("Heating finished");
+[e ( _LCD_SendDataString (1 :s 3C ]
+"104
+[; ;Tasks.c: 104:         LCD_SetDisplayPosition(0 , 3);
+[e ( _LCD_SetDisplayPosition (2 , -> -> 0 `i `uc -> -> 3 `i `uc ]
+"105
+[; ;Tasks.c: 105:         LCD_SendDataString("PRESS '#' to");
+[e ( _LCD_SendDataString (1 :s 4C ]
+"106
+[; ;Tasks.c: 106:         LCD_SetDisplayPosition(5 , 4);
+[e ( _LCD_SetDisplayPosition (2 , -> -> 5 `i `uc -> -> 4 `i `uc ]
+"107
+[; ;Tasks.c: 107:         LCD_SendDataString("return home");
+[e ( _LCD_SendDataString (1 :s 5C ]
+"108
+[; ;Tasks.c: 108:         LCD_SetDisplayPosition(11 , 1);
+[e ( _LCD_SetDisplayPosition (2 , -> -> 11 `i `uc -> -> 1 `i `uc ]
+"109
+[; ;Tasks.c: 109:         LCD_SendDataString("00:00");
+[e ( _LCD_SendDataString (1 :s 6C ]
+"110
+[; ;Tasks.c: 110:         u8counter++;
+[e ++ F283 -> -> 1 `i `us ]
+"111
+[; ;Tasks.c: 111:     }
+}
+[e $U 5  ]
+"112
+[; ;Tasks.c: 112:     else if(u8counter < 7)
+[e :U 4 ]
+[e $ ! < -> F283 `ui -> -> 7 `i `ui 6  ]
+"113
+[; ;Tasks.c: 113:     {
+{
+"114
+[; ;Tasks.c: 114:         u8counter++;
+[e ++ F283 -> -> 1 `i `us ]
+"115
+[; ;Tasks.c: 115:     }
+}
+[e $U 7  ]
+"116
+[; ;Tasks.c: 116:     else if(u8counter == 7)
+[e :U 6 ]
+[e $ ! == -> F283 `ui -> -> 7 `i `ui 8  ]
+"117
+[; ;Tasks.c: 117:     {
+{
+"118
+[; ;Tasks.c: 118:         LCD_ClearScreen();
+[e ( _LCD_ClearScreen ..  ]
+"119
+[; ;Tasks.c: 119:         u8counter++;
+[e ++ F283 -> -> 1 `i `us ]
+"120
+[; ;Tasks.c: 120:     }
+}
+[e $U 9  ]
+"121
+[; ;Tasks.c: 121:     else if(u8counter < 14)
+[e :U 8 ]
+[e $ ! < -> F283 `ui -> -> 14 `i `ui 10  ]
+"122
+[; ;Tasks.c: 122:     {
+{
+"123
+[; ;Tasks.c: 123:         u8counter++;
+[e ++ F283 -> -> 1 `i `us ]
+"124
+[; ;Tasks.c: 124:     }
+}
+[e $U 11  ]
+"125
+[; ;Tasks.c: 125:     else
+[e :U 10 ]
+"126
+[; ;Tasks.c: 126:     {
+{
+"127
+[; ;Tasks.c: 127:         u8counter = 0;
+[e = F283 -> -> 0 `i `us ]
+"128
+[; ;Tasks.c: 128:     }
+}
+[e :U 11 ]
+[e :U 9 ]
+[e :U 7 ]
+[e :U 5 ]
+"129
+[; ;Tasks.c: 129: }
+[e :UE 3 ]
+}
+"142
+[; ;Tasks.c: 142: static void Display_reminding_time (void)
+[v _Display_reminding_time `(v ~T0 @X0 1 sf ]
+"143
+[; ;Tasks.c: 143: {
+{
+[e :U _Display_reminding_time ]
+[f ]
+"145
+[; ;Tasks.c: 145:     if(g_u8heating_finished_flag == 1)
+[e $ ! == -> _g_u8heating_finished_flag `i -> 1 `i 13  ]
+"146
+[; ;Tasks.c: 146:     {
+{
+"148
+[; ;Tasks.c: 148:         LCD_SetDisplayPosition(11,1);
+[e ( _LCD_SetDisplayPosition (2 , -> -> 11 `i `uc -> -> 1 `i `uc ]
+"149
+[; ;Tasks.c: 149:         LCD_SendDataByte((g_u16MicrowaveTime / 600) + 0x30);
+[e ( _LCD_SendDataByte (1 -> + / -> _g_u16MicrowaveTime `ui -> -> 600 `i `ui -> -> 48 `i `ui `uc ]
+"150
+[; ;Tasks.c: 150:         LCD_SendDataByte(((g_u16MicrowaveTime / 60) % 10) + 0x30);
+[e ( _LCD_SendDataByte (1 -> + % / -> _g_u16MicrowaveTime `ui -> -> 60 `i `ui -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
+"151
+[; ;Tasks.c: 151:         LCD_SendDataByte(':');
+[e ( _LCD_SendDataByte (1 -> -> 58 `ui `uc ]
+"152
+[; ;Tasks.c: 152:         LCD_SendDataByte(((g_u16MicrowaveTime % 60) / 10) + 0x30);
+[e ( _LCD_SendDataByte (1 -> + / % -> _g_u16MicrowaveTime `ui -> -> 60 `i `ui -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
+"153
+[; ;Tasks.c: 153:         LCD_SendDataByte(((g_u16MicrowaveTime % 60) % 10) + 0x30);
+[e ( _LCD_SendDataByte (1 -> + % % -> _g_u16MicrowaveTime `ui -> -> 60 `i `ui -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
+"155
+[; ;Tasks.c: 155:         g_u8heating_finished_flag = 0;
+[e = _g_u8heating_finished_flag -> -> 0 `i `uc ]
+"156
+[; ;Tasks.c: 156:     }
+}
+[e :U 13 ]
+"157
+[; ;Tasks.c: 157: }
+[e :UE 12 ]
+}
+"170
+[; ;Tasks.c: 170: static void Get_and_Set_desired_temp(void)
+[v _Get_and_Set_desired_temp `(v ~T0 @X0 1 sf ]
+"171
+[; ;Tasks.c: 171: {
+{
+[e :U _Get_and_Set_desired_temp ]
+[f ]
+"173
+[; ;Tasks.c: 173:     ADC_Start_conversion();
+[e ( _ADC_Start_conversion ..  ]
+"175
+[; ;Tasks.c: 175:     g_u8temperature = ADC_Read_value() * 50u / 1023;
+[e = _g_u8temperature -> / * -> ( _ADC_Read_value ..  `ui -> 50 `ui -> -> 1023 `i `ui `uc ]
+"177
+[; ;Tasks.c: 177:     if(g_u8old_temp_reading != g_u8temperature)
+[e $ ! != -> _g_u8old_temp_reading `i -> _g_u8temperature `i 15  ]
+"178
+[; ;Tasks.c: 178:     {
+{
+"180
+[; ;Tasks.c: 180:         PWM_DutyCycle(PWM_CHANNEL_1 , 100 - g_u8temperature * 2);
+[e ( _PWM_DutyCycle (2 , . `E98 0 -> - -> 100 `i * -> _g_u8temperature `i -> 2 `i `uc ]
+"182
+[; ;Tasks.c: 182:         g_u8old_temp_reading = g_u8temperature;
+[e = _g_u8old_temp_reading _g_u8temperature ]
+"183
+[; ;Tasks.c: 183:     }
+}
+[e $U 16  ]
+"184
+[; ;Tasks.c: 184:     else
+[e :U 15 ]
+"185
+[; ;Tasks.c: 185:     {
+{
+"187
+[; ;Tasks.c: 187:     }
+}
+[e :U 16 ]
+"188
+[; ;Tasks.c: 188: }
+[e :UE 14 ]
+}
+"205
+[; ;Tasks.c: 205: void initialization_Tasks(void)
+[v _initialization_Tasks `(v ~T0 @X0 1 ef ]
+"206
+[; ;Tasks.c: 206: {
+{
+[e :U _initialization_Tasks ]
+[f ]
+"208
+[; ;Tasks.c: 208:     Scheduler_StartFunction(Welcome_screen_Task , 1 , 2000 , 0 , ONCE);
+[e ( _Scheduler_StartFunction (4 , , , , &U _Welcome_screen_Task -> -> 1 `i `uc -> -> 2000 `i `us -> -> 0 `i `us . `E23 0 ]
+"211
+[; ;Tasks.c: 211:     Scheduler_StartFunction(Home_screen_display , 1 , 5 , 2000 , ONCE);
+[e ( _Scheduler_StartFunction (4 , , , , &U _Home_screen_display -> -> 1 `i `uc -> -> 5 `i `us -> -> 2000 `i `us . `E23 0 ]
+"213
+[; ;Tasks.c: 213:     Scheduler_StartFunction(Reminding_time_Task , 1 , 1000 , 2020 , REPEAT);
+[e ( _Scheduler_StartFunction (4 , , , , &U _Reminding_time_Task -> -> 1 `i `uc -> -> 1000 `i `us -> -> 2020 `i `us . `E23 1 ]
+"215
+[; ;Tasks.c: 215:     Scheduler_StartFunction(KeyPad_Task , 2 , 30 , 2021 , REPEAT);
+[e ( _Scheduler_StartFunction (4 , , , , &U _KeyPad_Task -> -> 2 `i `uc -> -> 30 `i `us -> -> 2021 `i `us . `E23 1 ]
+"217
+[; ;Tasks.c: 217:     Scheduler_StartFunction(Weight_Sensor_Task , 3 , 30 , 2024 , REPEAT);
+[e ( _Scheduler_StartFunction (4 , , , , &U _Weight_Sensor_Task -> -> 3 `i `uc -> -> 30 `i `us -> -> 2024 `i `us . `E23 1 ]
+"219
+[; ;Tasks.c: 219:     Scheduler_StartFunction(Door_Sensor_Task , 4 , 30 , 2025 , REPEAT);
+[e ( _Scheduler_StartFunction (4 , , , , &U _Door_Sensor_Task -> -> 4 `i `uc -> -> 30 `i `us -> -> 2025 `i `us . `E23 1 ]
+"221
+[; ;Tasks.c: 221:     Scheduler_StartFunction(Temperature_Task , 5 , 30 , 2026 , REPEAT);
+[e ( _Scheduler_StartFunction (4 , , , , &U _Temperature_Task -> -> 5 `i `uc -> -> 30 `i `us -> -> 2026 `i `us . `E23 1 ]
+"223
+[; ;Tasks.c: 223:     Scheduler_StartFunction(LED_Buzzer_Task , 6 , 30 , 2027 , REPEAT);
+[e ( _Scheduler_StartFunction (4 , , , , &U _LED_Buzzer_Task -> -> 6 `i `uc -> -> 30 `i `us -> -> 2027 `i `us . `E23 1 ]
+"225
+[; ;Tasks.c: 225:     Scheduler_StartFunction(LCD_Task , 7 , 30 , 2028 , REPEAT);
+[e ( _Scheduler_StartFunction (4 , , , , &U _LCD_Task -> -> 7 `i `uc -> -> 30 `i `us -> -> 2028 `i `us . `E23 1 ]
+"227
+[; ;Tasks.c: 227: }
+[e :UE 17 ]
+}
+"240
+[; ;Tasks.c: 240: void LCD_Task(void)
+[v _LCD_Task `(v ~T0 @X0 1 ef ]
+"241
+[; ;Tasks.c: 241: {GPIO_WriteOnPin(2u , 7u , 1u);
+{
+[e :U _LCD_Task ]
+[f ]
+[e ( _GPIO_WriteOnPin (3 , , -> -> 2 `ui `uc -> -> 7 `ui `uc -> -> 1 `ui `uc ]
+"243
+[; ;Tasks.c: 243:     static EnumSystem_states_t old_system_state_var_t = SYSTEM_IDLE_STATE;
+[v F297 `E257 ~T0 @X0 1 s old_system_state_var_t ]
+[i F297
+. `E257 0
+]
+"245
+[; ;Tasks.c: 245:     switch(g_system_state_var_t)
+[e $U 20  ]
+"246
+[; ;Tasks.c: 246:     {
+{
+"249
+[; ;Tasks.c: 249:         case SYSTEM_IDLE_STATE:
+[e :U 21 ]
+"251
+[; ;Tasks.c: 251:             if(old_system_state_var_t == SYSTEM_HEATING_STATE)
+[e $ ! == -> F297 `ui -> . `E257 1 `ui 22  ]
+"252
+[; ;Tasks.c: 252:             {
+{
+"254
+[; ;Tasks.c: 254:                 LCD_SetDisplayPosition(0,3);
+[e ( _LCD_SetDisplayPosition (2 , -> -> 0 `i `uc -> -> 3 `i `uc ]
+"255
+[; ;Tasks.c: 255:                 LCD_SendDataString("Door_St:  Closed");
+[e ( _LCD_SendDataString (1 :s 7C ]
+"256
+[; ;Tasks.c: 256:                 LCD_SetDisplayPosition(0,4);
+[e ( _LCD_SetDisplayPosition (2 , -> -> 0 `i `uc -> -> 4 `i `uc ]
+"257
+[; ;Tasks.c: 257:                 LCD_SendDataString("Inside_St:  Food");
+[e ( _LCD_SendDataString (1 :s 8C ]
+"259
+[; ;Tasks.c: 259:                 old_system_state_var_t = SYSTEM_IDLE_STATE;
+[e = F297 . `E257 0 ]
+"261
+[; ;Tasks.c: 261:                 g_u8keypad_button_val = '_';
+[e = _g_u8keypad_button_val -> -> 95 `ui `uc ]
+"262
+[; ;Tasks.c: 262:             }
+}
+[e $U 23  ]
+"264
+[; ;Tasks.c: 264:             else if(old_system_state_var_t == SYSTEM_END_TIME)
+[e :U 22 ]
+[e $ ! == -> F297 `ui -> . `E257 2 `ui 24  ]
+"265
+[; ;Tasks.c: 265:             {
+{
+"267
+[; ;Tasks.c: 267:                 Home_screen_display();
+[e ( _Home_screen_display ..  ]
+"269
+[; ;Tasks.c: 269:                 old_system_state_var_t = SYSTEM_IDLE_STATE;
+[e = F297 . `E257 0 ]
+"271
+[; ;Tasks.c: 271:                 g_u8keypad_button_val = '_';
+[e = _g_u8keypad_button_val -> -> 95 `ui `uc ]
+"272
+[; ;Tasks.c: 272:             }
+}
+[e $U 25  ]
+"273
+[; ;Tasks.c: 273:             else
+[e :U 24 ]
+"274
+[; ;Tasks.c: 274:             {
+{
+"276
+[; ;Tasks.c: 276:                 LCD_SetDisplayPosition(13,2);
+[e ( _LCD_SetDisplayPosition (2 , -> -> 13 `i `uc -> -> 2 `i `uc ]
+"278
+[; ;Tasks.c: 278:                 LCD_DisplaNumber(g_u8temperature + 27u);
+[e ( _LCD_DisplaNumber (1 -> + -> _g_u8temperature `ui -> 27 `ui `l ]
+"280
+[; ;Tasks.c: 280:                 if(g_u8door_change_state_flag == 1)
+[e $ ! == -> _g_u8door_change_state_flag `i -> 1 `i 26  ]
+"281
+[; ;Tasks.c: 281:                 {
+{
+"282
+[; ;Tasks.c: 282:                     if(g_door_state_t == DOOR_IS_OPENED)
+[e $ ! == -> _g_door_state_t `ui -> . `E262 0 `ui 27  ]
+"283
+[; ;Tasks.c: 283:                     {
+{
+"284
+[; ;Tasks.c: 284:                         LCD_SetDisplayPosition(10,3);
+[e ( _LCD_SetDisplayPosition (2 , -> -> 10 `i `uc -> -> 3 `i `uc ]
+"285
+[; ;Tasks.c: 285:                         LCD_SendDataString("Opened");
+[e ( _LCD_SendDataString (1 :s 9C ]
+"286
+[; ;Tasks.c: 286:                     }
+}
+[e $U 28  ]
+"287
+[; ;Tasks.c: 287:                     else
+[e :U 27 ]
+"288
+[; ;Tasks.c: 288:                     {
+{
+"289
+[; ;Tasks.c: 289:                         LCD_SetDisplayPosition(10,3);
+[e ( _LCD_SetDisplayPosition (2 , -> -> 10 `i `uc -> -> 3 `i `uc ]
+"290
+[; ;Tasks.c: 290:                         LCD_SendDataString("Closed");
+[e ( _LCD_SendDataString (1 :s 10C ]
+"291
+[; ;Tasks.c: 291:                     }
+}
+[e :U 28 ]
+"293
+[; ;Tasks.c: 293:                     g_u8door_change_state_flag = 0;
+[e = _g_u8door_change_state_flag -> -> 0 `i `uc ]
+"294
+[; ;Tasks.c: 294:                 }
+}
+[e :U 26 ]
+"296
+[; ;Tasks.c: 296:                 if(g_u8weight_change_state_flag == 1)
+[e $ ! == -> _g_u8weight_change_state_flag `i -> 1 `i 29  ]
+"297
+[; ;Tasks.c: 297:                 {
+{
+"298
+[; ;Tasks.c: 298:                     if(g_inside_microwave == MICROWAVE_IS_EMPTY)
+[e $ ! == -> _g_inside_microwave `ui -> . `E266 0 `ui 30  ]
+"299
+[; ;Tasks.c: 299:                     {
+{
+"300
+[; ;Tasks.c: 300:                         LCD_SetDisplayPosition(10 , 4);
+[e ( _LCD_SetDisplayPosition (2 , -> -> 10 `i `uc -> -> 4 `i `uc ]
+"301
+[; ;Tasks.c: 301:                         LCD_SendDataString("N_Food");
+[e ( _LCD_SendDataString (1 :s 11C ]
+"302
+[; ;Tasks.c: 302:                     }
+}
+[e $U 31  ]
+"303
+[; ;Tasks.c: 303:                     else
+[e :U 30 ]
+"304
+[; ;Tasks.c: 304:                     {
+{
+"305
+[; ;Tasks.c: 305:                         LCD_SetDisplayPosition(10 , 4);
+[e ( _LCD_SetDisplayPosition (2 , -> -> 10 `i `uc -> -> 4 `i `uc ]
+"306
+[; ;Tasks.c: 306:                         LCD_SendDataString("  Food");
+[e ( _LCD_SendDataString (1 :s 12C ]
+"307
+[; ;Tasks.c: 307:                     }
+}
+[e :U 31 ]
+"309
+[; ;Tasks.c: 309:                     g_u8weight_change_state_flag = 0;
+[e = _g_u8weight_change_state_flag -> -> 0 `i `uc ]
+"310
+[; ;Tasks.c: 310:                 }
+}
+[e :U 29 ]
+"312
+[; ;Tasks.c: 312:                 if(g_u8keypad_button_val >= 0 && g_u8keypad_button_val < 10 && g_u8time_digits < 5)
+[e $ ! && && >= -> _g_u8keypad_button_val `i -> 0 `i < -> _g_u8keypad_button_val `i -> 10 `i < -> _g_u8time_digits `i -> 5 `i 32  ]
+"313
+[; ;Tasks.c: 313:                 {
+{
+"315
+[; ;Tasks.c: 315:                     LCD_SetDisplayPosition(11,1);
+[e ( _LCD_SetDisplayPosition (2 , -> -> 11 `i `uc -> -> 1 `i `uc ]
+"316
+[; ;Tasks.c: 316:                     LCD_SendDataString(g_u8timer_arr);
+[e ( _LCD_SendDataString (1 &U _g_u8timer_arr ]
+"318
+[; ;Tasks.c: 318:                     g_u8keypad_button_val = '_';
+[e = _g_u8keypad_button_val -> -> 95 `ui `uc ]
+"319
+[; ;Tasks.c: 319:                  }
+}
+[e $U 33  ]
+"321
+[; ;Tasks.c: 321:                 else if(g_u8keypad_button_val == '#')
+[e :U 32 ]
+[e $ ! == -> _g_u8keypad_button_val `ui -> 35 `ui 34  ]
+"322
+[; ;Tasks.c: 322:                 {
+{
+"324
+[; ;Tasks.c: 324:                     LCD_SetDisplayPosition(4,1);
+[e ( _LCD_SetDisplayPosition (2 , -> -> 4 `i `uc -> -> 1 `i `uc ]
+"325
+[; ;Tasks.c: 325:                     LCD_SendDataString(": ");
+[e ( _LCD_SendDataString (1 :s 13C ]
+"326
+[; ;Tasks.c: 326:                     LCD_SetDisplayPosition(11,1);
+[e ( _LCD_SetDisplayPosition (2 , -> -> 11 `i `uc -> -> 1 `i `uc ]
+"327
+[; ;Tasks.c: 327:                     LCD_SendDataString("__:__");
+[e ( _LCD_SendDataString (1 :s 14C ]
+"329
+[; ;Tasks.c: 329:                     g_u8keypad_button_val = '_';
+[e = _g_u8keypad_button_val -> -> 95 `ui `uc ]
+"330
+[; ;Tasks.c: 330:                 }
+}
+[e :U 34 ]
+[e :U 33 ]
+"331
+[; ;Tasks.c: 331:             }
+}
+[e :U 25 ]
+[e :U 23 ]
+"332
+[; ;Tasks.c: 332:             break;
+[e $U 19  ]
+"335
+[; ;Tasks.c: 335:         case SYSTEM_HEATING_STATE:
+[e :U 35 ]
+"336
+[; ;Tasks.c: 336:             if(old_system_state_var_t == SYSTEM_IDLE_STATE)
+[e $ ! == -> F297 `ui -> . `E257 0 `ui 36  ]
+"337
+[; ;Tasks.c: 337:             {
+{
+"339
+[; ;Tasks.c: 339:                 LCD_SetDisplayPosition(4,1);
+[e ( _LCD_SetDisplayPosition (2 , -> -> 4 `i `uc -> -> 1 `i `uc ]
+"340
+[; ;Tasks.c: 340:                 LCD_SendDataString("r:");
+[e ( _LCD_SendDataString (1 :s 15C ]
+"341
+[; ;Tasks.c: 341:                 LCD_SetDisplayPosition(0,3);
+[e ( _LCD_SetDisplayPosition (2 , -> -> 0 `i `uc -> -> 3 `i `uc ]
+"343
+[; ;Tasks.c: 343:                 LCD_SendDataString("Heating Process ");
+[e ( _LCD_SendDataString (1 :s 16C ]
+"344
+[; ;Tasks.c: 344:                 LCD_SendDataString("#:Pause ##:Stop ");
+[e ( _LCD_SendDataString (1 :s 17C ]
+"346
+[; ;Tasks.c: 346:                 old_system_state_var_t = SYSTEM_HEATING_STATE;
+[e = F297 . `E257 1 ]
+"348
+[; ;Tasks.c: 348:                 g_u8keypad_button_val = '_';
+[e = _g_u8keypad_button_val -> -> 95 `ui `uc ]
+"349
+[; ;Tasks.c: 349:             }
+}
+[e :U 36 ]
+"351
+[; ;Tasks.c: 351:             LCD_SetDisplayPosition(13,2);
+[e ( _LCD_SetDisplayPosition (2 , -> -> 13 `i `uc -> -> 2 `i `uc ]
+"353
+[; ;Tasks.c: 353:             LCD_DisplaNumber(g_u8temperature + 27u);
+[e ( _LCD_DisplaNumber (1 -> + -> _g_u8temperature `ui -> 27 `ui `l ]
+"355
+[; ;Tasks.c: 355:             Display_reminding_time();
+[e ( _Display_reminding_time ..  ]
+"356
+[; ;Tasks.c: 356:             break;
+[e $U 19  ]
+"358
+[; ;Tasks.c: 358:         case SYSTEM_END_TIME:
+[e :U 37 ]
+"360
+[; ;Tasks.c: 360:             if(old_system_state_var_t == SYSTEM_HEATING_STATE)
+[e $ ! == -> F297 `ui -> . `E257 1 `ui 38  ]
+"361
+[; ;Tasks.c: 361:             {
+{
+"362
+[; ;Tasks.c: 362:                 LCD_ClearScreen();
+[e ( _LCD_ClearScreen ..  ]
+"364
+[; ;Tasks.c: 364:                 old_system_state_var_t = SYSTEM_END_TIME;
+[e = F297 . `E257 2 ]
+"365
+[; ;Tasks.c: 365:             }
+}
+[e :U 38 ]
+"367
+[; ;Tasks.c: 367:             Display_finishing_message();
+[e ( _Display_finishing_message ..  ]
+"368
+[; ;Tasks.c: 368:             break;
+[e $U 19  ]
+"369
+[; ;Tasks.c: 369:         default:
+[e :U 39 ]
+"371
+[; ;Tasks.c: 371:             break;
+[e $U 19  ]
+"372
+[; ;Tasks.c: 372:     }
+}
+[e $U 19  ]
+[e :U 20 ]
+[e [\ -> _g_system_state_var_t `ui , $ -> . `E257 0 `ui 21
+ , $ -> . `E257 1 `ui 35
+ , $ -> . `E257 2 `ui 37
+ 39 ]
+[e :U 19 ]
+"373
+[; ;Tasks.c: 373: GPIO_WriteOnPin(2u , 7u , 0u);}
+[e ( _GPIO_WriteOnPin (3 , , -> -> 2 `ui `uc -> -> 7 `ui `uc -> -> 0 `ui `uc ]
+[e :UE 18 ]
+}
+"386
+[; ;Tasks.c: 386: void KeyPad_Task(void)
+[v _KeyPad_Task `(v ~T0 @X0 1 ef ]
+"387
+[; ;Tasks.c: 387: {
+{
+[e :U _KeyPad_Task ]
+[f ]
+"389
+[; ;Tasks.c: 389:     uint8 u8pressed_key = '_';
+[v _u8pressed_key `uc ~T0 @X0 1 a ]
+[e = _u8pressed_key -> -> 95 `ui `uc ]
+"391
+[; ;Tasks.c: 391:     static EnumSystem_states_t old_system_state_var_t = SYSTEM_IDLE_STATE;
+[v F300 `E257 ~T0 @X0 1 s old_system_state_var_t ]
+[i F300
+. `E257 0
+]
+"393
+[; ;Tasks.c: 393:     switch(g_system_state_var_t)
+[e $U 42  ]
+"394
+[; ;Tasks.c: 394:     {
+{
+"397
+[; ;Tasks.c: 397:         case SYSTEM_IDLE_STATE:
+[e :U 43 ]
+"399
+[; ;Tasks.c: 399:             if(old_system_state_var_t == SYSTEM_END_TIME)
+[e $ ! == -> F300 `ui -> . `E257 2 `ui 44  ]
+"400
+[; ;Tasks.c: 400:             {
+{
+"402
+[; ;Tasks.c: 402:                 g_u8timer_arr[0] = 0x30;
+[e = *U + &U _g_u8timer_arr * -> -> -> 0 `i `ui `ux -> -> # *U &U _g_u8timer_arr `ui `ux -> -> 48 `i `uc ]
+"403
+[; ;Tasks.c: 403:                 g_u8timer_arr[1] = 0x30;
+[e = *U + &U _g_u8timer_arr * -> -> -> 1 `i `ui `ux -> -> # *U &U _g_u8timer_arr `ui `ux -> -> 48 `i `uc ]
+"404
+[; ;Tasks.c: 404:                 g_u8timer_arr[3] = 0x30;
+[e = *U + &U _g_u8timer_arr * -> -> -> 3 `i `ui `ux -> -> # *U &U _g_u8timer_arr `ui `ux -> -> 48 `i `uc ]
+"405
+[; ;Tasks.c: 405:                 g_u8timer_arr[4] = 0x30;
+[e = *U + &U _g_u8timer_arr * -> -> -> 4 `i `ui `ux -> -> # *U &U _g_u8timer_arr `ui `ux -> -> 48 `i `uc ]
+"407
+[; ;Tasks.c: 407:                 g_u8time_digits = 0;
+[e = _g_u8time_digits -> -> 0 `i `uc ]
+"409
+[; ;Tasks.c: 409:                 old_system_state_var_t = SYSTEM_IDLE_STATE;
+[e = F300 . `E257 0 ]
+"410
+[; ;Tasks.c: 410:             }
+}
+[e :U 44 ]
+"412
+[; ;Tasks.c: 412:             u8pressed_key = KeyPad_get_PressedKey_with_debouncing();
+[e = _u8pressed_key ( _KeyPad_get_PressedKey_with_debouncing ..  ]
+"414
+[; ;Tasks.c: 414:             if(u8pressed_key >= 0 && u8pressed_key < 10)
+[e $ ! && >= -> _u8pressed_key `i -> 0 `i < -> _u8pressed_key `i -> 10 `i 45  ]
+"415
+[; ;Tasks.c: 415:             {
+{
+"417
+[; ;Tasks.c: 417:                 g_u8keypad_button_val = u8pressed_key;
+[e = _g_u8keypad_button_val _u8pressed_key ]
+"419
+[; ;Tasks.c: 419:                 switch(g_u8time_digits)
+[e $U 47  ]
+"420
+[; ;Tasks.c: 420:                 {
+{
+"421
+[; ;Tasks.c: 421:                     case 0:
+[e :U 48 ]
+"423
+[; ;Tasks.c: 423:                         g_u8timer_arr[4] = g_u8keypad_button_val + 0x30;
+[e = *U + &U _g_u8timer_arr * -> -> -> 4 `i `ui `ux -> -> # *U &U _g_u8timer_arr `ui `ux -> + -> _g_u8keypad_button_val `i -> 48 `i `uc ]
+"425
+[; ;Tasks.c: 425:                         if(g_u8keypad_button_val != 0)
+[e $ ! != -> _g_u8keypad_button_val `i -> 0 `i 49  ]
+"426
+[; ;Tasks.c: 426:                         {
+{
+"428
+[; ;Tasks.c: 428:                             g_u8time_digits++;
+[e ++ _g_u8time_digits -> -> 1 `i `uc ]
+"429
+[; ;Tasks.c: 429:                         }
+}
+[e :U 49 ]
+"431
+[; ;Tasks.c: 431:                         g_u16MicrowaveTime = g_u8keypad_button_val;
+[e = _g_u16MicrowaveTime -> _g_u8keypad_button_val `us ]
+"432
+[; ;Tasks.c: 432:                         break;
+[e $U 46  ]
+"433
+[; ;Tasks.c: 433:                     case 1:
+[e :U 50 ]
+"435
+[; ;Tasks.c: 435:                         g_u8timer_arr[3] = g_u8timer_arr[4];
+[e = *U + &U _g_u8timer_arr * -> -> -> 3 `i `ui `ux -> -> # *U &U _g_u8timer_arr `ui `ux *U + &U _g_u8timer_arr * -> -> -> 4 `i `ui `ux -> -> # *U &U _g_u8timer_arr `ui `ux ]
+"437
+[; ;Tasks.c: 437:                         g_u8timer_arr[4] = g_u8keypad_button_val + 0x30;
+[e = *U + &U _g_u8timer_arr * -> -> -> 4 `i `ui `ux -> -> # *U &U _g_u8timer_arr `ui `ux -> + -> _g_u8keypad_button_val `i -> 48 `i `uc ]
+"439
+[; ;Tasks.c: 439:                         g_u8time_digits++;
+[e ++ _g_u8time_digits -> -> 1 `i `uc ]
+"441
+[; ;Tasks.c: 441:                         g_u16MicrowaveTime = g_u16MicrowaveTime * 10 + g_u8keypad_button_val;
+[e = _g_u16MicrowaveTime -> + * -> _g_u16MicrowaveTime `ui -> -> 10 `i `ui -> _g_u8keypad_button_val `ui `us ]
+"442
+[; ;Tasks.c: 442:                         break;
+[e $U 46  ]
+"443
+[; ;Tasks.c: 443:                     case 2:
+[e :U 51 ]
+"445
+[; ;Tasks.c: 445:                         g_u8timer_arr[1] = g_u8timer_arr[3];
+[e = *U + &U _g_u8timer_arr * -> -> -> 1 `i `ui `ux -> -> # *U &U _g_u8timer_arr `ui `ux *U + &U _g_u8timer_arr * -> -> -> 3 `i `ui `ux -> -> # *U &U _g_u8timer_arr `ui `ux ]
+"447
+[; ;Tasks.c: 447:                         g_u8timer_arr[3] = g_u8timer_arr[4];
+[e = *U + &U _g_u8timer_arr * -> -> -> 3 `i `ui `ux -> -> # *U &U _g_u8timer_arr `ui `ux *U + &U _g_u8timer_arr * -> -> -> 4 `i `ui `ux -> -> # *U &U _g_u8timer_arr `ui `ux ]
+"449
+[; ;Tasks.c: 449:                         g_u8timer_arr[4] = g_u8keypad_button_val + 0x30;
+[e = *U + &U _g_u8timer_arr * -> -> -> 4 `i `ui `ux -> -> # *U &U _g_u8timer_arr `ui `ux -> + -> _g_u8keypad_button_val `i -> 48 `i `uc ]
+"451
+[; ;Tasks.c: 451:                         g_u8time_digits++;
+[e ++ _g_u8time_digits -> -> 1 `i `uc ]
+"453
+[; ;Tasks.c: 453:                         g_u16MicrowaveTime = (g_u8timer_arr[1] - 0x30) * 60 +
+[e = _g_u16MicrowaveTime -> + + * - -> *U + &U _g_u8timer_arr * -> -> -> 1 `i `ui `ux -> -> # *U &U _g_u8timer_arr `ui `ux `i -> 48 `i -> 60 `i * - -> *U + &U _g_u8timer_arr * -> -> -> 3 `i `ui `ux -> -> # *U &U _g_u8timer_arr `ui `ux `i -> 48 `i -> 10 `i -> _g_u8keypad_button_val `i `us ]
+"455
+[; ;Tasks.c: 455:                         break;
+[e $U 46  ]
+"456
+[; ;Tasks.c: 456:                     case 3:
+[e :U 52 ]
+"458
+[; ;Tasks.c: 458:                         if(!(g_u8timer_arr[1] == 57 && g_u8timer_arr[3] == 57 && g_u8timer_arr[4] >= 54 ))
+[e $ ! ! && && == -> *U + &U _g_u8timer_arr * -> -> -> 1 `i `ui `ux -> -> # *U &U _g_u8timer_arr `ui `ux `i -> 57 `i == -> *U + &U _g_u8timer_arr * -> -> -> 3 `i `ui `ux -> -> # *U &U _g_u8timer_arr `ui `ux `i -> 57 `i >= -> *U + &U _g_u8timer_arr * -> -> -> 4 `i `ui `ux -> -> # *U &U _g_u8timer_arr `ui `ux `i -> 54 `i 53  ]
+"459
+[; ;Tasks.c: 459:                         {
+{
+"461
+[; ;Tasks.c: 461:                             g_u8timer_arr[0] = g_u8timer_arr[1];
+[e = *U + &U _g_u8timer_arr * -> -> -> 0 `i `ui `ux -> -> # *U &U _g_u8timer_arr `ui `ux *U + &U _g_u8timer_arr * -> -> -> 1 `i `ui `ux -> -> # *U &U _g_u8timer_arr `ui `ux ]
+"463
+[; ;Tasks.c: 463:                             g_u8timer_arr[1] = g_u8timer_arr[3];
+[e = *U + &U _g_u8timer_arr * -> -> -> 1 `i `ui `ux -> -> # *U &U _g_u8timer_arr `ui `ux *U + &U _g_u8timer_arr * -> -> -> 3 `i `ui `ux -> -> # *U &U _g_u8timer_arr `ui `ux ]
+"465
+[; ;Tasks.c: 465:                             g_u8timer_arr[3] = g_u8timer_arr[4];
+[e = *U + &U _g_u8timer_arr * -> -> -> 3 `i `ui `ux -> -> # *U &U _g_u8timer_arr `ui `ux *U + &U _g_u8timer_arr * -> -> -> 4 `i `ui `ux -> -> # *U &U _g_u8timer_arr `ui `ux ]
+"467
+[; ;Tasks.c: 467:                             g_u8timer_arr[4] = g_u8keypad_button_val + 0x30;
+[e = *U + &U _g_u8timer_arr * -> -> -> 4 `i `ui `ux -> -> # *U &U _g_u8timer_arr `ui `ux -> + -> _g_u8keypad_button_val `i -> 48 `i `uc ]
+"469
+[; ;Tasks.c: 469:                             g_u8time_digits++;
+[e ++ _g_u8time_digits -> -> 1 `i `uc ]
+"471
+[; ;Tasks.c: 471:                             g_u16MicrowaveTime = (g_u8timer_arr[0] - 0x30) * 600 +
+[e = _g_u16MicrowaveTime -> + + + * - -> *U + &U _g_u8timer_arr * -> -> -> 0 `i `ui `ux -> -> # *U &U _g_u8timer_arr `ui `ux `i -> 48 `i -> 600 `i * - -> *U + &U _g_u8timer_arr * -> -> -> 1 `i `ui `ux -> -> # *U &U _g_u8timer_arr `ui `ux `i -> 48 `i -> 60 `i * - -> *U + &U _g_u8timer_arr * -> -> -> 3 `i `ui `ux -> -> # *U &U _g_u8timer_arr `ui `ux `i -> 48 `i -> 10 `i -> _g_u8keypad_button_val `i `us ]
+"474
+[; ;Tasks.c: 474:                         }
+}
+[e $U 54  ]
+"475
+[; ;Tasks.c: 475:                         else
+[e :U 53 ]
+"476
+[; ;Tasks.c: 476:                         {
+{
+"478
+[; ;Tasks.c: 478:                         }
+}
+[e :U 54 ]
+"479
+[; ;Tasks.c: 479:                         break;
+[e $U 46  ]
+"480
+[; ;Tasks.c: 480:                     default:
+[e :U 55 ]
+"482
+[; ;Tasks.c: 482:                         break;
+[e $U 46  ]
+"483
+[; ;Tasks.c: 483:                 }
+}
+[e $U 46  ]
+[e :U 47 ]
+[e [\ -> _g_u8time_digits `i , $ -> 0 `i 48
+ , $ -> 1 `i 50
+ , $ -> 2 `i 51
+ , $ -> 3 `i 52
+ 55 ]
+[e :U 46 ]
+"484
+[; ;Tasks.c: 484:             }
+}
+[e $U 56  ]
+"486
+[; ;Tasks.c: 486:             else if(u8pressed_key == '*')
+[e :U 45 ]
+[e $ ! == -> _u8pressed_key `ui -> 42 `ui 57  ]
+"487
+[; ;Tasks.c: 487:             {
+{
+"489
+[; ;Tasks.c: 489:                 g_u8keypad_button_val = u8pressed_key;
+[e = _g_u8keypad_button_val _u8pressed_key ]
+"492
+[; ;Tasks.c: 492:                 if(g_u16MicrowaveTime != 0 && g_door_state_t == DOOR_IS_CLOSED && g_inside_microwave == MICROWAVE_HAS_SOMETHING_INSIDE)
+[e $ ! && && != -> _g_u16MicrowaveTime `ui -> -> 0 `i `ui == -> _g_door_state_t `ui -> . `E262 1 `ui == -> _g_inside_microwave `ui -> . `E266 1 `ui 58  ]
+"493
+[; ;Tasks.c: 493:                 {
+{
+"495
+[; ;Tasks.c: 495:                     g_u8time_digits = 5;
+[e = _g_u8time_digits -> -> 5 `i `uc ]
+"497
+[; ;Tasks.c: 497:                     g_system_state_var_t = SYSTEM_HEATING_STATE;
+[e = _g_system_state_var_t . `E257 1 ]
+"498
+[; ;Tasks.c: 498:                 }
+}
+[e $U 59  ]
+"499
+[; ;Tasks.c: 499:                 else
+[e :U 58 ]
+"500
+[; ;Tasks.c: 500:                 {
+{
+"502
+[; ;Tasks.c: 502:                 }
+}
+[e :U 59 ]
+"503
+[; ;Tasks.c: 503:             }
+}
+[e $U 60  ]
+"505
+[; ;Tasks.c: 505:             else if(u8pressed_key == '#')
+[e :U 57 ]
+[e $ ! == -> _u8pressed_key `ui -> 35 `ui 61  ]
+"506
+[; ;Tasks.c: 506:             {
+{
+"508
+[; ;Tasks.c: 508:                 g_u8keypad_button_val = u8pressed_key;
+[e = _g_u8keypad_button_val _u8pressed_key ]
+"510
+[; ;Tasks.c: 510:                 g_u8timer_arr[0] = 0x30;
+[e = *U + &U _g_u8timer_arr * -> -> -> 0 `i `ui `ux -> -> # *U &U _g_u8timer_arr `ui `ux -> -> 48 `i `uc ]
+"511
+[; ;Tasks.c: 511:                 g_u8timer_arr[1] = 0x30;
+[e = *U + &U _g_u8timer_arr * -> -> -> 1 `i `ui `ux -> -> # *U &U _g_u8timer_arr `ui `ux -> -> 48 `i `uc ]
+"512
+[; ;Tasks.c: 512:                 g_u8timer_arr[3] = 0x30;
+[e = *U + &U _g_u8timer_arr * -> -> -> 3 `i `ui `ux -> -> # *U &U _g_u8timer_arr `ui `ux -> -> 48 `i `uc ]
+"513
+[; ;Tasks.c: 513:                 g_u8timer_arr[4] = 0x30;
+[e = *U + &U _g_u8timer_arr * -> -> -> 4 `i `ui `ux -> -> # *U &U _g_u8timer_arr `ui `ux -> -> 48 `i `uc ]
+"515
+[; ;Tasks.c: 515:                 g_u8time_digits = 0;
+[e = _g_u8time_digits -> -> 0 `i `uc ]
+"517
+[; ;Tasks.c: 517:                 g_u16MicrowaveTime = 0;
+[e = _g_u16MicrowaveTime -> -> 0 `i `us ]
+"518
+[; ;Tasks.c: 518:             }
+}
+[e :U 61 ]
+[e :U 60 ]
+[e :U 56 ]
+"519
+[; ;Tasks.c: 519:             break;
+[e $U 41  ]
+"522
+[; ;Tasks.c: 522:         case SYSTEM_HEATING_STATE:
+[e :U 62 ]
+"524
+[; ;Tasks.c: 524:             u8pressed_key = KeyPad_get_PressedKey_with_debouncing();
+[e = _u8pressed_key ( _KeyPad_get_PressedKey_with_debouncing ..  ]
+"526
+[; ;Tasks.c: 526:             if(u8pressed_key == '#')
+[e $ ! == -> _u8pressed_key `ui -> 35 `ui 63  ]
+"527
+[; ;Tasks.c: 527:             {
+{
+"529
+[; ;Tasks.c: 529:                 g_u8keypad_button_val = u8pressed_key;
+[e = _g_u8keypad_button_val _u8pressed_key ]
+"532
+[; ;Tasks.c: 532:                 g_system_state_var_t = SYSTEM_IDLE_STATE;
+[e = _g_system_state_var_t . `E257 0 ]
+"533
+[; ;Tasks.c: 533:             }
+}
+[e :U 63 ]
+"534
+[; ;Tasks.c: 534:             break;
+[e $U 41  ]
+"536
+[; ;Tasks.c: 536:         case SYSTEM_END_TIME:
+[e :U 64 ]
+"538
+[; ;Tasks.c: 538:             old_system_state_var_t = SYSTEM_END_TIME;
+[e = F300 . `E257 2 ]
+"540
+[; ;Tasks.c: 540:             u8pressed_key = KeyPad_get_PressedKey_with_debouncing();
+[e = _u8pressed_key ( _KeyPad_get_PressedKey_with_debouncing ..  ]
+"543
+[; ;Tasks.c: 543:             if(u8pressed_key == '#')
+[e $ ! == -> _u8pressed_key `ui -> 35 `ui 65  ]
+"544
+[; ;Tasks.c: 544:             {
+{
+"546
+[; ;Tasks.c: 546:                 g_u8keypad_button_val = u8pressed_key;
+[e = _g_u8keypad_button_val _u8pressed_key ]
+"548
+[; ;Tasks.c: 548:                 g_system_state_var_t = SYSTEM_IDLE_STATE;
+[e = _g_system_state_var_t . `E257 0 ]
+"549
+[; ;Tasks.c: 549:             }
+}
+[e :U 65 ]
+"550
+[; ;Tasks.c: 550:             break;
+[e $U 41  ]
+"551
+[; ;Tasks.c: 551:         default:
+[e :U 66 ]
+"553
+[; ;Tasks.c: 553:             break;
+[e $U 41  ]
+"554
+[; ;Tasks.c: 554:     }
+}
+[e $U 41  ]
+[e :U 42 ]
+[e [\ -> _g_system_state_var_t `ui , $ -> . `E257 0 `ui 43
+ , $ -> . `E257 1 `ui 62
+ , $ -> . `E257 2 `ui 64
+ 66 ]
+[e :U 41 ]
+"555
+[; ;Tasks.c: 555: }
+[e :UE 40 ]
+}
+"568
+[; ;Tasks.c: 568: void Temperature_Task (void)
+[v _Temperature_Task `(v ~T0 @X0 1 ef ]
+"569
+[; ;Tasks.c: 569: {
+{
+[e :U _Temperature_Task ]
+[f ]
+"570
+[; ;Tasks.c: 570:     static EnumSystem_states_t old_system_state_var_t = SYSTEM_IDLE_STATE;
+[v F302 `E257 ~T0 @X0 1 s old_system_state_var_t ]
+[i F302
+. `E257 0
+]
+"572
+[; ;Tasks.c: 572:     switch(g_system_state_var_t)
+[e $U 69  ]
+"573
+[; ;Tasks.c: 573:     {
+{
+"576
+[; ;Tasks.c: 576:         case SYSTEM_IDLE_STATE:
+[e :U 70 ]
+"577
+[; ;Tasks.c: 577:             if(old_system_state_var_t == SYSTEM_HEATING_STATE)
+[e $ ! == -> F302 `ui -> . `E257 1 `ui 71  ]
+"578
+[; ;Tasks.c: 578:             {
+{
+"580
+[; ;Tasks.c: 580:                 GPIO_WriteOnPin(2u , 5u , 0u);
+[e ( _GPIO_WriteOnPin (3 , , -> -> 2 `ui `uc -> -> 5 `ui `uc -> -> 0 `ui `uc ]
+"582
+[; ;Tasks.c: 582:                 PWM_Stop(PWM_CHANNEL_1);
+[e ( _PWM_Stop (1 . `E98 0 ]
+"584
+[; ;Tasks.c: 584:                 old_system_state_var_t = SYSTEM_IDLE_STATE;
+[e = F302 . `E257 0 ]
+"585
+[; ;Tasks.c: 585:             }
+}
+[e $U 72  ]
+"586
+[; ;Tasks.c: 586:             else if(old_system_state_var_t == SYSTEM_END_TIME)
+[e :U 71 ]
+[e $ ! == -> F302 `ui -> . `E257 2 `ui 73  ]
+"587
+[; ;Tasks.c: 587:             {
+{
+"589
+[; ;Tasks.c: 589:                 g_u8old_temp_reading = 100;
+[e = _g_u8old_temp_reading -> -> 100 `i `uc ]
+"591
+[; ;Tasks.c: 591:                 old_system_state_var_t = SYSTEM_IDLE_STATE;
+[e = F302 . `E257 0 ]
+"592
+[; ;Tasks.c: 592:             }
+}
+[e :U 73 ]
+[e :U 72 ]
+"595
+[; ;Tasks.c: 595:             Get_and_Set_desired_temp();
+[e ( _Get_and_Set_desired_temp ..  ]
+"596
+[; ;Tasks.c: 596:             break;
+[e $U 68  ]
+"599
+[; ;Tasks.c: 599:         case SYSTEM_HEATING_STATE:
+[e :U 74 ]
+"601
+[; ;Tasks.c: 601:             if(old_system_state_var_t == SYSTEM_IDLE_STATE)
+[e $ ! == -> F302 `ui -> . `E257 0 `ui 75  ]
+"602
+[; ;Tasks.c: 602:             {
+{
+"604
+[; ;Tasks.c: 604:                 PWM_Start(PWM_CHANNEL_1);
+[e ( _PWM_Start (1 . `E98 0 ]
+"606
+[; ;Tasks.c: 606:                 GPIO_WriteOnPin(2u , 5u , 1u);
+[e ( _GPIO_WriteOnPin (3 , , -> -> 2 `ui `uc -> -> 5 `ui `uc -> -> 1 `ui `uc ]
+"608
+[; ;Tasks.c: 608:                 old_system_state_var_t = SYSTEM_HEATING_STATE;
+[e = F302 . `E257 1 ]
+"609
+[; ;Tasks.c: 609:             }
+}
+[e :U 75 ]
+"612
+[; ;Tasks.c: 612:             Get_and_Set_desired_temp();
+[e ( _Get_and_Set_desired_temp ..  ]
+"613
+[; ;Tasks.c: 613:             break;
+[e $U 68  ]
+"615
+[; ;Tasks.c: 615:         case SYSTEM_END_TIME:
+[e :U 76 ]
+"616
+[; ;Tasks.c: 616:             if(old_system_state_var_t == SYSTEM_HEATING_STATE)
+[e $ ! == -> F302 `ui -> . `E257 1 `ui 77  ]
+"617
+[; ;Tasks.c: 617:             {
+{
+"619
+[; ;Tasks.c: 619:                 GPIO_WriteOnPin(2u , 5u , 0u);
+[e ( _GPIO_WriteOnPin (3 , , -> -> 2 `ui `uc -> -> 5 `ui `uc -> -> 0 `ui `uc ]
+"621
+[; ;Tasks.c: 621:                 PWM_Stop(PWM_CHANNEL_1);
+[e ( _PWM_Stop (1 . `E98 0 ]
+"623
+[; ;Tasks.c: 623:                 old_system_state_var_t = SYSTEM_END_TIME;
+[e = F302 . `E257 2 ]
+"624
+[; ;Tasks.c: 624:             }
+}
+[e :U 77 ]
+"625
+[; ;Tasks.c: 625:         default:
+[e :U 78 ]
+"627
+[; ;Tasks.c: 627:             break;
+[e $U 68  ]
+"628
+[; ;Tasks.c: 628:     }
+}
+[e $U 68  ]
+[e :U 69 ]
+[e [\ -> _g_system_state_var_t `ui , $ -> . `E257 0 `ui 70
+ , $ -> . `E257 1 `ui 74
+ , $ -> . `E257 2 `ui 76
+ 78 ]
+[e :U 68 ]
+"629
+[; ;Tasks.c: 629: }
+[e :UE 67 ]
+}
+"642
+[; ;Tasks.c: 642: void Door_Sensor_Task(void)
+[v _Door_Sensor_Task `(v ~T0 @X0 1 ef ]
+"643
+[; ;Tasks.c: 643: {
+{
+[e :U _Door_Sensor_Task ]
+[f ]
+"645
+[; ;Tasks.c: 645:     static uint8 u8Debouncing_time = 0;
+[v F304 `uc ~T0 @X0 1 s u8Debouncing_time ]
+[i F304
+-> -> 0 `i `uc
+]
+"647
+[; ;Tasks.c: 647:     if(GPIO_ReadFromPin(1u , 4u) == 0u)
+[e $ ! == -> ( _GPIO_ReadFromPin (2 , -> -> 1 `ui `uc -> -> 4 `ui `uc `ui -> 0 `ui 80  ]
+"648
+[; ;Tasks.c: 648:     {
+{
+"650
+[; ;Tasks.c: 650:         switch(u8Debouncing_time)
+[e $U 82  ]
+"651
+[; ;Tasks.c: 651:         {
+{
+"652
+[; ;Tasks.c: 652:             case 0:
+[e :U 83 ]
+"653
+[; ;Tasks.c: 653:                  u8Debouncing_time++;
+[e ++ F304 -> -> 1 `i `uc ]
+"654
+[; ;Tasks.c: 654:                 break;
+[e $U 81  ]
+"655
+[; ;Tasks.c: 655:             case 1:
+[e :U 84 ]
+"656
+[; ;Tasks.c: 656:                 u8Debouncing_time++;
+[e ++ F304 -> -> 1 `i `uc ]
+"657
+[; ;Tasks.c: 657:                 break;
+[e $U 81  ]
+"658
+[; ;Tasks.c: 658:             case 2:
+[e :U 85 ]
+"660
+[; ;Tasks.c: 660:                 switch(g_system_state_var_t)
+[e $U 87  ]
+"661
+[; ;Tasks.c: 661:                 {
+{
+"664
+[; ;Tasks.c: 664:                     case SYSTEM_IDLE_STATE:
+[e :U 88 ]
+"666
+[; ;Tasks.c: 666:                         if(g_door_state_t == DOOR_IS_CLOSED)
+[e $ ! == -> _g_door_state_t `ui -> . `E262 1 `ui 89  ]
+"667
+[; ;Tasks.c: 667:                         {
+{
+"668
+[; ;Tasks.c: 668:                             g_door_state_t = DOOR_IS_OPENED;
+[e = _g_door_state_t . `E262 0 ]
+"669
+[; ;Tasks.c: 669:                         }
+}
+[e $U 90  ]
+"670
+[; ;Tasks.c: 670:                         else
+[e :U 89 ]
+"671
+[; ;Tasks.c: 671:                         {
+{
+"672
+[; ;Tasks.c: 672:                             g_door_state_t = DOOR_IS_CLOSED;
+[e = _g_door_state_t . `E262 1 ]
+"673
+[; ;Tasks.c: 673:                         }
+}
+[e :U 90 ]
+"674
+[; ;Tasks.c: 674:                         break;
+[e $U 86  ]
+"677
+[; ;Tasks.c: 677:                     case SYSTEM_HEATING_STATE:
+[e :U 91 ]
+"679
+[; ;Tasks.c: 679:                         break;
+[e $U 86  ]
+"681
+[; ;Tasks.c: 681:                     case SYSTEM_END_TIME:
+[e :U 92 ]
+"683
+[; ;Tasks.c: 683:                         g_door_state_t = DOOR_IS_OPENED;
+[e = _g_door_state_t . `E262 0 ]
+"685
+[; ;Tasks.c: 685:                         g_system_state_var_t = SYSTEM_IDLE_STATE;
+[e = _g_system_state_var_t . `E257 0 ]
+"686
+[; ;Tasks.c: 686:                         break;
+[e $U 86  ]
+"687
+[; ;Tasks.c: 687:                     default:
+[e :U 93 ]
+"689
+[; ;Tasks.c: 689:                         break;
+[e $U 86  ]
+"690
+[; ;Tasks.c: 690:                 }
+}
+[e $U 86  ]
+[e :U 87 ]
+[e [\ -> _g_system_state_var_t `ui , $ -> . `E257 0 `ui 88
+ , $ -> . `E257 1 `ui 91
+ , $ -> . `E257 2 `ui 92
+ 93 ]
+[e :U 86 ]
+"692
+[; ;Tasks.c: 692:                 g_u8door_change_state_flag++;
+[e ++ _g_u8door_change_state_flag -> -> 1 `i `uc ]
+"694
+[; ;Tasks.c: 694:                 u8Debouncing_time++;
+[e ++ F304 -> -> 1 `i `uc ]
+"695
+[; ;Tasks.c: 695:                 break;
+[e $U 81  ]
+"696
+[; ;Tasks.c: 696:             default:
+[e :U 94 ]
+"698
+[; ;Tasks.c: 698:                 break;
+[e $U 81  ]
+"699
+[; ;Tasks.c: 699:         }
+}
+[e $U 81  ]
+[e :U 82 ]
+[e [\ -> F304 `i , $ -> 0 `i 83
+ , $ -> 1 `i 84
+ , $ -> 2 `i 85
+ 94 ]
+[e :U 81 ]
+"700
+[; ;Tasks.c: 700:     }
+}
+[e $U 95  ]
+"701
+[; ;Tasks.c: 701:     else
+[e :U 80 ]
+"702
+[; ;Tasks.c: 702:     {
+{
+"704
+[; ;Tasks.c: 704:         u8Debouncing_time = 0;
+[e = F304 -> -> 0 `i `uc ]
+"705
+[; ;Tasks.c: 705:     }
+}
+[e :U 95 ]
+"706
+[; ;Tasks.c: 706: }
+[e :UE 79 ]
+}
+"719
+[; ;Tasks.c: 719: void Weight_Sensor_Task(void)
+[v _Weight_Sensor_Task `(v ~T0 @X0 1 ef ]
+"720
+[; ;Tasks.c: 720: {
+{
+[e :U _Weight_Sensor_Task ]
+[f ]
+"722
+[; ;Tasks.c: 722:     static uint8 u8Debouncing_time = 0;
+[v F306 `uc ~T0 @X0 1 s u8Debouncing_time ]
+[i F306
+-> -> 0 `i `uc
+]
+"724
+[; ;Tasks.c: 724:     if(g_door_state_t == DOOR_IS_OPENED && GPIO_ReadFromPin(1u , 5u) == 0u)
+[e $ ! && == -> _g_door_state_t `ui -> . `E262 0 `ui == -> ( _GPIO_ReadFromPin (2 , -> -> 1 `ui `uc -> -> 5 `ui `uc `ui -> 0 `ui 97  ]
+"725
+[; ;Tasks.c: 725:     {
+{
+"727
+[; ;Tasks.c: 727:         switch(u8Debouncing_time)
+[e $U 99  ]
+"728
+[; ;Tasks.c: 728:         {
+{
+"729
+[; ;Tasks.c: 729:             case 0:
+[e :U 100 ]
+"730
+[; ;Tasks.c: 730:                 u8Debouncing_time++;
+[e ++ F306 -> -> 1 `i `uc ]
+"731
+[; ;Tasks.c: 731:                 break;
+[e $U 98  ]
+"732
+[; ;Tasks.c: 732:             case 1:
+[e :U 101 ]
+"733
+[; ;Tasks.c: 733:                 u8Debouncing_time++;
+[e ++ F306 -> -> 1 `i `uc ]
+"734
+[; ;Tasks.c: 734:                 break;
+[e $U 98  ]
+"735
+[; ;Tasks.c: 735:             case 2:
+[e :U 102 ]
+"737
+[; ;Tasks.c: 737:                 switch(g_system_state_var_t)
+[e $U 104  ]
+"738
+[; ;Tasks.c: 738:                 {
+{
+"741
+[; ;Tasks.c: 741:                     case SYSTEM_IDLE_STATE:
+[e :U 105 ]
+"743
+[; ;Tasks.c: 743:                         if(g_inside_microwave == MICROWAVE_IS_EMPTY)
+[e $ ! == -> _g_inside_microwave `ui -> . `E266 0 `ui 106  ]
+"744
+[; ;Tasks.c: 744:                         {
+{
+"745
+[; ;Tasks.c: 745:                             g_inside_microwave = MICROWAVE_HAS_SOMETHING_INSIDE;
+[e = _g_inside_microwave . `E266 1 ]
+"746
+[; ;Tasks.c: 746:                         }
+}
+[e $U 107  ]
+"747
+[; ;Tasks.c: 747:                         else
+[e :U 106 ]
+"748
+[; ;Tasks.c: 748:                         {
+{
+"749
+[; ;Tasks.c: 749:                             g_inside_microwave = MICROWAVE_IS_EMPTY;
+[e = _g_inside_microwave . `E266 0 ]
+"750
+[; ;Tasks.c: 750:                         }
+}
+[e :U 107 ]
+"751
+[; ;Tasks.c: 751:                         break;
+[e $U 103  ]
+"754
+[; ;Tasks.c: 754:                     case SYSTEM_HEATING_STATE:
+[e :U 108 ]
+"756
+[; ;Tasks.c: 756:                         break;
+[e $U 103  ]
+"758
+[; ;Tasks.c: 758:                     case SYSTEM_END_TIME:
+[e :U 109 ]
+"760
+[; ;Tasks.c: 760:                         break;
+[e $U 103  ]
+"761
+[; ;Tasks.c: 761:                     default:
+[e :U 110 ]
+"763
+[; ;Tasks.c: 763:                         break;
+[e $U 103  ]
+"764
+[; ;Tasks.c: 764:                 }
+}
+[e $U 103  ]
+[e :U 104 ]
+[e [\ -> _g_system_state_var_t `ui , $ -> . `E257 0 `ui 105
+ , $ -> . `E257 1 `ui 108
+ , $ -> . `E257 2 `ui 109
+ 110 ]
+[e :U 103 ]
+"766
+[; ;Tasks.c: 766:                 g_u8weight_change_state_flag++;
+[e ++ _g_u8weight_change_state_flag -> -> 1 `i `uc ]
+"768
+[; ;Tasks.c: 768:                 u8Debouncing_time++;
+[e ++ F306 -> -> 1 `i `uc ]
+"769
+[; ;Tasks.c: 769:                 break;
+[e $U 98  ]
+"770
+[; ;Tasks.c: 770:             default:
+[e :U 111 ]
+"772
+[; ;Tasks.c: 772:                 break;
+[e $U 98  ]
+"773
+[; ;Tasks.c: 773:         }
+}
+[e $U 98  ]
+[e :U 99 ]
+[e [\ -> F306 `i , $ -> 0 `i 100
+ , $ -> 1 `i 101
+ , $ -> 2 `i 102
+ 111 ]
+[e :U 98 ]
+"774
+[; ;Tasks.c: 774:     }
+}
+[e $U 112  ]
+"775
+[; ;Tasks.c: 775:     else
+[e :U 97 ]
+"776
+[; ;Tasks.c: 776:     {
+{
+"778
+[; ;Tasks.c: 778:         u8Debouncing_time = 0;
+[e = F306 -> -> 0 `i `uc ]
+"779
+[; ;Tasks.c: 779:     }
+}
+[e :U 112 ]
+"780
+[; ;Tasks.c: 780: }
+[e :UE 96 ]
+}
+"793
+[; ;Tasks.c: 793: void LED_Buzzer_Task(void)
+[v _LED_Buzzer_Task `(v ~T0 @X0 1 ef ]
+"794
+[; ;Tasks.c: 794: {
+{
+[e :U _LED_Buzzer_Task ]
+[f ]
+"796
+[; ;Tasks.c: 796:     static uint16 u8counter = 0;
+[v F308 `us ~T0 @X0 1 s u8counter ]
+[i F308
+-> -> 0 `i `us
+]
+"798
+[; ;Tasks.c: 798:     switch(g_system_state_var_t)
+[e $U 115  ]
+"799
+[; ;Tasks.c: 799:     {
+{
+"802
+[; ;Tasks.c: 802:         case SYSTEM_IDLE_STATE:
+[e :U 116 ]
+"803
+[; ;Tasks.c: 803:             u8counter = 0;
+[e = F308 -> -> 0 `i `us ]
+"805
+[; ;Tasks.c: 805:             GPIO_WriteOnPin(2u , 1u , 1u);
+[e ( _GPIO_WriteOnPin (3 , , -> -> 2 `ui `uc -> -> 1 `ui `uc -> -> 1 `ui `uc ]
+"806
+[; ;Tasks.c: 806:             break;
+[e $U 114  ]
+"809
+[; ;Tasks.c: 809:         case SYSTEM_HEATING_STATE:
+[e :U 117 ]
+"811
+[; ;Tasks.c: 811:             GPIO_WriteOnPin(1u , 7u , 1u);
+[e ( _GPIO_WriteOnPin (3 , , -> -> 1 `ui `uc -> -> 7 `ui `uc -> -> 1 `ui `uc ]
+"812
+[; ;Tasks.c: 812:             break;
+[e $U 114  ]
+"814
+[; ;Tasks.c: 814:         case SYSTEM_END_TIME:
+[e :U 118 ]
+"816
+[; ;Tasks.c: 816:             GPIO_WriteOnPin(1u , 7u , 0u);
+[e ( _GPIO_WriteOnPin (3 , , -> -> 1 `ui `uc -> -> 7 `ui `uc -> -> 0 `ui `uc ]
+"818
+[; ;Tasks.c: 818:             if(u8counter < 20)
+[e $ ! < -> F308 `ui -> -> 20 `i `ui 119  ]
+"819
+[; ;Tasks.c: 819:             {
+{
+"820
+[; ;Tasks.c: 820:                 u8counter++;
+[e ++ F308 -> -> 1 `i `us ]
+"822
+[; ;Tasks.c: 822:                 GPIO_WriteOnPin(2u , 1u , 0u);
+[e ( _GPIO_WriteOnPin (3 , , -> -> 2 `ui `uc -> -> 1 `ui `uc -> -> 0 `ui `uc ]
+"823
+[; ;Tasks.c: 823:             }
+}
+[e $U 120  ]
+"824
+[; ;Tasks.c: 824:             else if(u8counter < 40)
+[e :U 119 ]
+[e $ ! < -> F308 `ui -> -> 40 `i `ui 121  ]
+"825
+[; ;Tasks.c: 825:             {
+{
+"826
+[; ;Tasks.c: 826:                 u8counter++;
+[e ++ F308 -> -> 1 `i `us ]
+"828
+[; ;Tasks.c: 828:                 GPIO_WriteOnPin(2u , 1u , 1u);
+[e ( _GPIO_WriteOnPin (3 , , -> -> 2 `ui `uc -> -> 1 `ui `uc -> -> 1 `ui `uc ]
+"829
+[; ;Tasks.c: 829:             }
+}
+[e $U 122  ]
+"830
+[; ;Tasks.c: 830:             else
+[e :U 121 ]
+"831
+[; ;Tasks.c: 831:             {
+{
+"832
+[; ;Tasks.c: 832:                 u8counter = 0;
+[e = F308 -> -> 0 `i `us ]
+"833
+[; ;Tasks.c: 833:             }
+}
+[e :U 122 ]
+[e :U 120 ]
+"834
+[; ;Tasks.c: 834:             break;
+[e $U 114  ]
+"835
+[; ;Tasks.c: 835:         default:
+[e :U 123 ]
+"837
+[; ;Tasks.c: 837:             break;
+[e $U 114  ]
+"838
+[; ;Tasks.c: 838:     }
+}
+[e $U 114  ]
+[e :U 115 ]
+[e [\ -> _g_system_state_var_t `ui , $ -> . `E257 0 `ui 116
+ , $ -> . `E257 1 `ui 117
+ , $ -> . `E257 2 `ui 118
+ 123 ]
+[e :U 114 ]
+"839
+[; ;Tasks.c: 839: }
+[e :UE 113 ]
+}
+"852
+[; ;Tasks.c: 852: void Reminding_time_Task(void)
+[v _Reminding_time_Task `(v ~T0 @X0 1 ef ]
+"853
+[; ;Tasks.c: 853: {
+{
+[e :U _Reminding_time_Task ]
+[f ]
+"855
+[; ;Tasks.c: 855:     if(g_system_state_var_t == SYSTEM_HEATING_STATE)
+[e $ ! == -> _g_system_state_var_t `ui -> . `E257 1 `ui 125  ]
+"856
+[; ;Tasks.c: 856:     {
+{
+"858
+[; ;Tasks.c: 858:         g_u16MicrowaveTime--;
+[e -- _g_u16MicrowaveTime -> -> 1 `i `us ]
+"860
+[; ;Tasks.c: 860:         g_u8heating_finished_flag = 1;
+[e = _g_u8heating_finished_flag -> -> 1 `i `uc ]
+"862
+[; ;Tasks.c: 862:         if (g_u16MicrowaveTime == 0)
+[e $ ! == -> _g_u16MicrowaveTime `ui -> -> 0 `i `ui 126  ]
+"863
+[; ;Tasks.c: 863:         {
+{
+"864
+[; ;Tasks.c: 864:             g_system_state_var_t = SYSTEM_END_TIME;
+[e = _g_system_state_var_t . `E257 2 ]
+"865
+[; ;Tasks.c: 865:         }
+}
+[e :U 126 ]
+"866
+[; ;Tasks.c: 866:     }
+}
+[e :U 125 ]
+"867
+[; ;Tasks.c: 867: }
+[e :UE 124 ]
+}
+"880
+[; ;Tasks.c: 880: void Welcome_screen_Task(void)
+[v _Welcome_screen_Task `(v ~T0 @X0 1 ef ]
+"881
+[; ;Tasks.c: 881: {
+{
+[e :U _Welcome_screen_Task ]
+[f ]
+"883
+[; ;Tasks.c: 883:     LCD_SetDisplayPosition(3,1);
+[e ( _LCD_SetDisplayPosition (2 , -> -> 3 `i `uc -> -> 1 `i `uc ]
+"884
+[; ;Tasks.c: 884:     LCD_SendDataString("Welcome to");
+[e ( _LCD_SendDataString (1 :s 18C ]
+"885
+[; ;Tasks.c: 885:     LCD_SetDisplayPosition(0,2);
+[e ( _LCD_SetDisplayPosition (2 , -> -> 0 `i `uc -> -> 2 `i `uc ]
+"886
+[; ;Tasks.c: 886:     LCD_SendDataString("----------------");
+[e ( _LCD_SendDataString (1 :s 19C ]
+"887
+[; ;Tasks.c: 887:     LCD_SetDisplayPosition(0,3);
+[e ( _LCD_SetDisplayPosition (2 , -> -> 0 `i `uc -> -> 3 `i `uc ]
+"888
+[; ;Tasks.c: 888:     LCD_SendDataString("SWIFT ACT");
+[e ( _LCD_SendDataString (1 :s 20C ]
+"889
+[; ;Tasks.c: 889:     LCD_SetDisplayPosition(7,4);
+[e ( _LCD_SetDisplayPosition (2 , -> -> 7 `i `uc -> -> 4 `i `uc ]
+"890
+[; ;Tasks.c: 890:     LCD_SendDataString("MicroWave");
+[e ( _LCD_SendDataString (1 :s 21C ]
+"891
+[; ;Tasks.c: 891: }
+[e :UE 127 ]
+}
+"905
+[; ;Tasks.c: 905: void Home_screen_display(void)
+[v _Home_screen_display `(v ~T0 @X0 1 ef ]
+"906
+[; ;Tasks.c: 906: {
+{
+[e :U _Home_screen_display ]
+[f ]
+"908
+[; ;Tasks.c: 908:     LCD_ClearScreen();
+[e ( _LCD_ClearScreen ..  ]
+"909
+[; ;Tasks.c: 909:     LCD_SendDataString("Time:");
+[e ( _LCD_SendDataString (1 :s 22C ]
+"910
+[; ;Tasks.c: 910:     LCD_SetDisplayPosition(11,1);
+[e ( _LCD_SetDisplayPosition (2 , -> -> 11 `i `uc -> -> 1 `i `uc ]
+"911
+[; ;Tasks.c: 911:     LCD_SendDataString("__:__");
+[e ( _LCD_SendDataString (1 :s 23C ]
+"912
+[; ;Tasks.c: 912:     LCD_SetDisplayPosition(0,2);
+[e ( _LCD_SetDisplayPosition (2 , -> -> 0 `i `uc -> -> 2 `i `uc ]
+"913
+[; ;Tasks.c: 913:     LCD_SendDataString("Temperature:");
+[e ( _LCD_SendDataString (1 :s 24C ]
+"914
+[; ;Tasks.c: 914:     LCD_SetDisplayPosition(15,2);
+[e ( _LCD_SetDisplayPosition (2 , -> -> 15 `i `uc -> -> 2 `i `uc ]
+"915
+[; ;Tasks.c: 915:     LCD_SendDataByte('c');
+[e ( _LCD_SendDataByte (1 -> -> 99 `ui `uc ]
+"917
+[; ;Tasks.c: 917:     LCD_SetDisplayPosition(0,3);
+[e ( _LCD_SetDisplayPosition (2 , -> -> 0 `i `uc -> -> 3 `i `uc ]
+"918
+[; ;Tasks.c: 918:     if(g_door_state_t == DOOR_IS_CLOSED)
+[e $ ! == -> _g_door_state_t `ui -> . `E262 1 `ui 129  ]
+"919
+[; ;Tasks.c: 919:     {
+{
+"920
+[; ;Tasks.c: 920:         LCD_SendDataString("Door_St:  Closed");
+[e ( _LCD_SendDataString (1 :s 25C ]
+"921
+[; ;Tasks.c: 921:     }
+}
+[e $U 130  ]
+"922
+[; ;Tasks.c: 922:     else
+[e :U 129 ]
+"923
+[; ;Tasks.c: 923:     {
+{
+"924
+[; ;Tasks.c: 924:         LCD_SendDataString("Door_St:  Opened");
+[e ( _LCD_SendDataString (1 :s 26C ]
+"925
+[; ;Tasks.c: 925:     }
+}
+[e :U 130 ]
+"927
+[; ;Tasks.c: 927:     LCD_SetDisplayPosition(0,4);
+[e ( _LCD_SetDisplayPosition (2 , -> -> 0 `i `uc -> -> 4 `i `uc ]
+"928
+[; ;Tasks.c: 928:     if(g_inside_microwave == MICROWAVE_IS_EMPTY)
+[e $ ! == -> _g_inside_microwave `ui -> . `E266 0 `ui 131  ]
+"929
+[; ;Tasks.c: 929:     {
+{
+"930
+[; ;Tasks.c: 930:         LCD_SendDataString("Inside_St:N_Food");
+[e ( _LCD_SendDataString (1 :s 27C ]
+"931
+[; ;Tasks.c: 931:     }
+}
+[e $U 132  ]
+"932
+[; ;Tasks.c: 932:     else
+[e :U 131 ]
+"933
+[; ;Tasks.c: 933:     {
+{
+"934
+[; ;Tasks.c: 934:         LCD_SendDataString("Inside_St:  Food");
+[e ( _LCD_SendDataString (1 :s 28C ]
+"935
+[; ;Tasks.c: 935:     }
+}
+[e :U 132 ]
+"936
+[; ;Tasks.c: 936: }
+[e :UE 128 ]
+}
+[a 18C 87 101 108 99 111 109 101 32 116 111 0 ]
+[a 4C 80 82 69 83 83 32 39 35 39 32 116 111 0 ]
+[a 21C 77 105 99 114 111 87 97 118 101 0 ]
+[a 5C 114 101 116 117 114 110 32 104 111 109 101 0 ]
+[a 27C 73 110 115 105 100 101 95 83 116 58 78 95 70 111 111 100 0 ]
+[a 11C 78 95 70 111 111 100 0 ]
+[a 8C 73 110 115 105 100 101 95 83 116 58 32 32 70 111 111 100 0 ]
+[a 28C 73 110 115 105 100 101 95 83 116 58 32 32 70 111 111 100 0 ]
+[a 12C 32 32 70 111 111 100 0 ]
+[a 7C 68 111 111 114 95 83 116 58 32 32 67 108 111 115 101 100 0 ]
+[a 25C 68 111 111 114 95 83 116 58 32 32 67 108 111 115 101 100 0 ]
+[a 10C 67 108 111 115 101 100 0 ]
+[a 26C 68 111 111 114 95 83 116 58 32 32 79 112 101 110 101 100 0 ]
+[a 9C 79 112 101 110 101 100 0 ]
+[a 3C 72 101 97 116 105 110 103 32 102 105 110 105 115 104 101 100 0 ]
+[a 14C 95 95 58 95 95 0 ]
+[a 23C 95 95 58 95 95 0 ]
+[a 20C 83 87 73 70 84 32 65 67 84 0 ]
+[a 1C 84 105 109 101 114 58 0 ]
+[a 15C 114 58 0 ]
+[a 24C 84 101 109 112 101 114 97 116 117 114 101 58 0 ]
+[a 22C 84 105 109 101 58 0 ]
+[a 2C 48 48 58 48 48 0 ]
+[a 6C 48 48 58 48 48 0 ]
+[a 19C 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 0 ]
+[a 16C 72 101 97 116 105 110 103 32 80 114 111 99 101 115 115 32 0 ]
+[a 17C 35 58 80 97 117 115 101 32 35 35 58 83 116 111 112 32 0 ]
+[a 13C 58 32 0 ]

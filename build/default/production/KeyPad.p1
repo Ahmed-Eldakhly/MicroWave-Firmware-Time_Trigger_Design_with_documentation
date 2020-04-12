@@ -1,0 +1,506 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"70 KeyPad.c
+[; ;KeyPad.c: 70:         GPIO_SetPinDirection(3u , u8counter , 0u);
+[c E12 0 1 .. ]
+[n E12 . GPIO_CORRECT_SET GPIO_UNCORRECT_SET  ]
+"68 ./GPIO.h
+[; ;./GPIO.h: 68: extern EnumGPIO_Status_t GPIO_SetPinDirection(uint8 a_u8port , uint8 a_u8pin , uint8 a_u8direction);
+[v _GPIO_SetPinDirection `(E12 ~T0 @X0 0 ef3`uc`uc`uc ]
+"97
+[; ;./GPIO.h: 97: extern EnumGPIO_Status_t GPIO_WriteOnPin(uint8 a_u8port , uint8 a_u8pin , uint8 a_u8value);
+[v _GPIO_WriteOnPin `(E12 ~T0 @X0 0 ef3`uc`uc`uc ]
+"48 KeyPad.c
+[; ;KeyPad.c: 48: static uint8 KeyPad_getPressedKey(void);
+[v _KeyPad_getPressedKey `(uc ~T0 @X0 0 sf ]
+"125 ./GPIO.h
+[; ;./GPIO.h: 125: extern uint8 GPIO_ReadFromPin(uint8 a_u8port , uint8 a_u8pin);
+[v _GPIO_ReadFromPin `(uc ~T0 @X0 0 ef2`uc`uc ]
+"35 KeyPad.c
+[; ;KeyPad.c: 35: static uint8 KeyPad_switch(uint8 a_u8row, uint8 a_u8col);
+[v _KeyPad_switch `(uc ~T0 @X0 0 sf2`uc`uc ]
+"65 KeyPad.c
+[; ;KeyPad.c: 65: void KeyPad_Initialization(void)
+[v _KeyPad_Initialization `(v ~T0 @X0 1 ef ]
+"66
+[; ;KeyPad.c: 66: {
+{
+[e :U _KeyPad_Initialization ]
+[f ]
+"68
+[; ;KeyPad.c: 68:     for(uint8 u8counter = 0u ; u8counter <= 0u + 3u ; u8counter++)
+{
+[v _u8counter `uc ~T0 @X0 1 a ]
+[e = _u8counter -> -> 0 `ui `uc ]
+[e $ <= -> _u8counter `ui + -> 0 `ui -> 3 `ui 2  ]
+[e $U 3  ]
+[e :U 2 ]
+"69
+[; ;KeyPad.c: 69:     {
+{
+"70
+[; ;KeyPad.c: 70:         GPIO_SetPinDirection(3u , u8counter , 0u);
+[e ( _GPIO_SetPinDirection (3 , , -> -> 3 `ui `uc _u8counter -> -> 0 `ui `uc ]
+"71
+[; ;KeyPad.c: 71:         GPIO_WriteOnPin(3u , u8counter , 1u);
+[e ( _GPIO_WriteOnPin (3 , , -> -> 3 `ui `uc _u8counter -> -> 1 `ui `uc ]
+"72
+[; ;KeyPad.c: 72:     }
+}
+[e ++ _u8counter -> -> 1 `i `uc ]
+[e $ <= -> _u8counter `ui + -> 0 `ui -> 3 `ui 2  ]
+[e :U 3 ]
+}
+"74
+[; ;KeyPad.c: 74:     for(uint8 u8counter = 0u ; u8counter <= 0u + 2u ; u8counter++)
+{
+[v _u8counter `uc ~T0 @X0 1 a ]
+[e = _u8counter -> -> 0 `ui `uc ]
+[e $ <= -> _u8counter `ui + -> 0 `ui -> 2 `ui 5  ]
+[e $U 6  ]
+[e :U 5 ]
+"75
+[; ;KeyPad.c: 75:     {
+{
+"76
+[; ;KeyPad.c: 76:         GPIO_SetPinDirection(1u , u8counter , 1u);
+[e ( _GPIO_SetPinDirection (3 , , -> -> 1 `ui `uc _u8counter -> -> 1 `ui `uc ]
+"77
+[; ;KeyPad.c: 77:     }
+}
+[e ++ _u8counter -> -> 1 `i `uc ]
+[e $ <= -> _u8counter `ui + -> 0 `ui -> 2 `ui 5  ]
+[e :U 6 ]
+}
+"78
+[; ;KeyPad.c: 78: }
+[e :UE 1 ]
+}
+"91
+[; ;KeyPad.c: 91: uint8 KeyPad_get_PressedKey_with_debouncing(void)
+[v _KeyPad_get_PressedKey_with_debouncing `(uc ~T0 @X0 1 ef ]
+"92
+[; ;KeyPad.c: 92: {
+{
+[e :U _KeyPad_get_PressedKey_with_debouncing ]
+[f ]
+"94
+[; ;KeyPad.c: 94:     static uint8 u8debouncing_counter = 0;
+[v F54 `uc ~T0 @X0 1 s u8debouncing_counter ]
+[i F54
+-> -> 0 `i `uc
+]
+"95
+[; ;KeyPad.c: 95:     uint8 u8pressed_key = '_';
+[v _u8pressed_key `uc ~T0 @X0 1 a ]
+[e = _u8pressed_key -> -> 95 `ui `uc ]
+"96
+[; ;KeyPad.c: 96:     uint8 u8retVal = '_';
+[v _u8retVal `uc ~T0 @X0 1 a ]
+[e = _u8retVal -> -> 95 `ui `uc ]
+"98
+[; ;KeyPad.c: 98:     KeyPad_Initialization();
+[e ( _KeyPad_Initialization ..  ]
+"100
+[; ;KeyPad.c: 100:     u8pressed_key = KeyPad_getPressedKey();
+[e = _u8pressed_key ( _KeyPad_getPressedKey ..  ]
+"102
+[; ;KeyPad.c: 102:     if(u8pressed_key != '_')
+[e $ ! != -> _u8pressed_key `ui -> 95 `ui 9  ]
+"103
+[; ;KeyPad.c: 103:     {
+{
+"105
+[; ;KeyPad.c: 105:         switch(u8debouncing_counter)
+[e $U 11  ]
+"106
+[; ;KeyPad.c: 106:         {
+{
+"107
+[; ;KeyPad.c: 107:             case 0:
+[e :U 12 ]
+"108
+[; ;KeyPad.c: 108:                 u8debouncing_counter++;
+[e ++ F54 -> -> 1 `i `uc ]
+"109
+[; ;KeyPad.c: 109:                 break;
+[e $U 10  ]
+"110
+[; ;KeyPad.c: 110:             case 1:
+[e :U 13 ]
+"112
+[; ;KeyPad.c: 112:                 u8retVal = u8pressed_key;
+[e = _u8retVal _u8pressed_key ]
+"114
+[; ;KeyPad.c: 114:                 u8debouncing_counter++;
+[e ++ F54 -> -> 1 `i `uc ]
+"115
+[; ;KeyPad.c: 115:                 break;
+[e $U 10  ]
+"116
+[; ;KeyPad.c: 116:             case 2:
+[e :U 14 ]
+"118
+[; ;KeyPad.c: 118:                 break;
+[e $U 10  ]
+"119
+[; ;KeyPad.c: 119:             default:
+[e :U 15 ]
+"121
+[; ;KeyPad.c: 121:                 break;
+[e $U 10  ]
+"122
+[; ;KeyPad.c: 122:         }
+}
+[e $U 10  ]
+[e :U 11 ]
+[e [\ -> F54 `i , $ -> 0 `i 12
+ , $ -> 1 `i 13
+ , $ -> 2 `i 14
+ 15 ]
+[e :U 10 ]
+"123
+[; ;KeyPad.c: 123:     }
+}
+[e $U 16  ]
+"124
+[; ;KeyPad.c: 124:     else
+[e :U 9 ]
+"125
+[; ;KeyPad.c: 125:     {
+{
+"127
+[; ;KeyPad.c: 127:         u8debouncing_counter = 0;
+[e = F54 -> -> 0 `i `uc ]
+"128
+[; ;KeyPad.c: 128:     }
+}
+[e :U 16 ]
+"129
+[; ;KeyPad.c: 129:     return u8retVal;
+[e ) _u8retVal ]
+[e $UE 8  ]
+"130
+[; ;KeyPad.c: 130: }
+[e :UE 8 ]
+}
+"143
+[; ;KeyPad.c: 143: static uint8 KeyPad_getPressedKey(void)
+[v _KeyPad_getPressedKey `(uc ~T0 @X0 1 sf ]
+"144
+[; ;KeyPad.c: 144: {
+{
+[e :U _KeyPad_getPressedKey ]
+[f ]
+"146
+[; ;KeyPad.c: 146:  uint8 u8ReturnVal = '_';
+[v _u8ReturnVal `uc ~T0 @X0 1 a ]
+[e = _u8ReturnVal -> -> 95 `ui `uc ]
+"148
+[; ;KeyPad.c: 148:  for(uint8 u8rowCounter = 0u ; u8rowCounter <= 0u + 3u ; u8rowCounter++)
+{
+[v _u8rowCounter `uc ~T0 @X0 1 a ]
+[e = _u8rowCounter -> -> 0 `ui `uc ]
+[e $ <= -> _u8rowCounter `ui + -> 0 `ui -> 3 `ui 18  ]
+[e $U 19  ]
+[e :U 18 ]
+"149
+[; ;KeyPad.c: 149:  {
+{
+"151
+[; ;KeyPad.c: 151:   GPIO_WriteOnPin(3u , u8rowCounter , 0u);
+[e ( _GPIO_WriteOnPin (3 , , -> -> 3 `ui `uc _u8rowCounter -> -> 0 `ui `uc ]
+"153
+[; ;KeyPad.c: 153:   for(uint8 u8colCounter = 0u ; u8colCounter <= 0u + 2u ; u8colCounter++)
+{
+[v _u8colCounter `uc ~T0 @X0 1 a ]
+[e = _u8colCounter -> -> 0 `ui `uc ]
+[e $ <= -> _u8colCounter `ui + -> 0 `ui -> 2 `ui 21  ]
+[e $U 22  ]
+[e :U 21 ]
+"154
+[; ;KeyPad.c: 154:   {
+{
+"156
+[; ;KeyPad.c: 156:    if(GPIO_ReadFromPin(1u , u8colCounter) == 0u)
+[e $ ! == -> ( _GPIO_ReadFromPin (2 , -> -> 1 `ui `uc _u8colCounter `ui -> 0 `ui 24  ]
+"157
+[; ;KeyPad.c: 157:    {
+{
+"159
+[; ;KeyPad.c: 159:                 return KeyPad_switch(u8rowCounter - 0u , u8colCounter - 0u);
+[e ) ( _KeyPad_switch (2 , -> - -> _u8rowCounter `ui -> 0 `ui `uc -> - -> _u8colCounter `ui -> 0 `ui `uc ]
+[e $UE 17  ]
+"160
+[; ;KeyPad.c: 160:    }
+}
+[e :U 24 ]
+"161
+[; ;KeyPad.c: 161:   }
+}
+[e ++ _u8colCounter -> -> 1 `i `uc ]
+[e $ <= -> _u8colCounter `ui + -> 0 `ui -> 2 `ui 21  ]
+[e :U 22 ]
+}
+"163
+[; ;KeyPad.c: 163:         GPIO_WriteOnPin(3u , u8rowCounter , 1u);
+[e ( _GPIO_WriteOnPin (3 , , -> -> 3 `ui `uc _u8rowCounter -> -> 1 `ui `uc ]
+"164
+[; ;KeyPad.c: 164:  }
+}
+[e ++ _u8rowCounter -> -> 1 `i `uc ]
+[e $ <= -> _u8rowCounter `ui + -> 0 `ui -> 3 `ui 18  ]
+[e :U 19 ]
+}
+"165
+[; ;KeyPad.c: 165:  return u8ReturnVal;
+[e ) _u8ReturnVal ]
+[e $UE 17  ]
+"166
+[; ;KeyPad.c: 166: }
+[e :UE 17 ]
+}
+"180
+[; ;KeyPad.c: 180: static uint8 KeyPad_switch(uint8 a_u8row , uint8 a_u8col)
+[v _KeyPad_switch `(uc ~T0 @X0 1 sf2`uc`uc ]
+"181
+[; ;KeyPad.c: 181: {
+{
+[e :U _KeyPad_switch ]
+"180
+[; ;KeyPad.c: 180: static uint8 KeyPad_switch(uint8 a_u8row , uint8 a_u8col)
+[v _a_u8row `uc ~T0 @X0 1 r1 ]
+[v _a_u8col `uc ~T0 @X0 1 r2 ]
+"181
+[; ;KeyPad.c: 181: {
+[f ]
+"183
+[; ;KeyPad.c: 183:  uint8 u8ReturnVal = 0;
+[v _u8ReturnVal `uc ~T0 @X0 1 a ]
+[e = _u8ReturnVal -> -> 0 `i `uc ]
+"186
+[; ;KeyPad.c: 186:  switch(a_u8row)
+[e $U 27  ]
+"187
+[; ;KeyPad.c: 187:  {
+{
+"188
+[; ;KeyPad.c: 188:  case 0:
+[e :U 28 ]
+"190
+[; ;KeyPad.c: 190:   switch(a_u8col)
+[e $U 30  ]
+"191
+[; ;KeyPad.c: 191:   {
+{
+"192
+[; ;KeyPad.c: 192:   case 0: u8ReturnVal = '*';
+[e :U 31 ]
+[e = _u8ReturnVal -> -> 42 `ui `uc ]
+"193
+[; ;KeyPad.c: 193:             break;
+[e $U 29  ]
+"194
+[; ;KeyPad.c: 194:   case 1: u8ReturnVal = 0;
+[e :U 32 ]
+[e = _u8ReturnVal -> -> 0 `i `uc ]
+"195
+[; ;KeyPad.c: 195:             break;
+[e $U 29  ]
+"196
+[; ;KeyPad.c: 196:   case 2: u8ReturnVal = '#';
+[e :U 33 ]
+[e = _u8ReturnVal -> -> 35 `ui `uc ]
+"197
+[; ;KeyPad.c: 197:             break;
+[e $U 29  ]
+"203
+[; ;KeyPad.c: 203:         default:
+[e :U 34 ]
+"205
+[; ;KeyPad.c: 205:             break;
+[e $U 29  ]
+"206
+[; ;KeyPad.c: 206:   }
+}
+[e $U 29  ]
+[e :U 30 ]
+[e [\ -> _a_u8col `i , $ -> 0 `i 31
+ , $ -> 1 `i 32
+ , $ -> 2 `i 33
+ 34 ]
+[e :U 29 ]
+"207
+[; ;KeyPad.c: 207:   break;
+[e $U 26  ]
+"209
+[; ;KeyPad.c: 209:  case 1:
+[e :U 35 ]
+"211
+[; ;KeyPad.c: 211:   switch(a_u8col)
+[e $U 37  ]
+"212
+[; ;KeyPad.c: 212:   {
+{
+"213
+[; ;KeyPad.c: 213:   case 0: u8ReturnVal = 7;
+[e :U 38 ]
+[e = _u8ReturnVal -> -> 7 `i `uc ]
+"214
+[; ;KeyPad.c: 214:    break;
+[e $U 36  ]
+"215
+[; ;KeyPad.c: 215:   case 1: u8ReturnVal = 8;
+[e :U 39 ]
+[e = _u8ReturnVal -> -> 8 `i `uc ]
+"216
+[; ;KeyPad.c: 216:    break;
+[e $U 36  ]
+"217
+[; ;KeyPad.c: 217:   case 2: u8ReturnVal = 9;
+[e :U 40 ]
+[e = _u8ReturnVal -> -> 9 `i `uc ]
+"218
+[; ;KeyPad.c: 218:    break;
+[e $U 36  ]
+"224
+[; ;KeyPad.c: 224:         default:
+[e :U 41 ]
+"226
+[; ;KeyPad.c: 226:             break;
+[e $U 36  ]
+"227
+[; ;KeyPad.c: 227:   }
+}
+[e $U 36  ]
+[e :U 37 ]
+[e [\ -> _a_u8col `i , $ -> 0 `i 38
+ , $ -> 1 `i 39
+ , $ -> 2 `i 40
+ 41 ]
+[e :U 36 ]
+"228
+[; ;KeyPad.c: 228:   break;
+[e $U 26  ]
+"230
+[; ;KeyPad.c: 230:  case 2:
+[e :U 42 ]
+"232
+[; ;KeyPad.c: 232:   switch(a_u8col)
+[e $U 44  ]
+"233
+[; ;KeyPad.c: 233:   {
+{
+"234
+[; ;KeyPad.c: 234:   case 0: u8ReturnVal = 4;
+[e :U 45 ]
+[e = _u8ReturnVal -> -> 4 `i `uc ]
+"235
+[; ;KeyPad.c: 235:    break;
+[e $U 43  ]
+"236
+[; ;KeyPad.c: 236:   case 1: u8ReturnVal = 5;
+[e :U 46 ]
+[e = _u8ReturnVal -> -> 5 `i `uc ]
+"237
+[; ;KeyPad.c: 237:    break;
+[e $U 43  ]
+"238
+[; ;KeyPad.c: 238:   case 2: u8ReturnVal = 6;
+[e :U 47 ]
+[e = _u8ReturnVal -> -> 6 `i `uc ]
+"239
+[; ;KeyPad.c: 239:    break;
+[e $U 43  ]
+"245
+[; ;KeyPad.c: 245:         default:
+[e :U 48 ]
+"247
+[; ;KeyPad.c: 247:             break;
+[e $U 43  ]
+"248
+[; ;KeyPad.c: 248:   }
+}
+[e $U 43  ]
+[e :U 44 ]
+[e [\ -> _a_u8col `i , $ -> 0 `i 45
+ , $ -> 1 `i 46
+ , $ -> 2 `i 47
+ 48 ]
+[e :U 43 ]
+"249
+[; ;KeyPad.c: 249:   break;
+[e $U 26  ]
+"252
+[; ;KeyPad.c: 252:  case 3:
+[e :U 49 ]
+"254
+[; ;KeyPad.c: 254:   switch(a_u8col)
+[e $U 51  ]
+"255
+[; ;KeyPad.c: 255:   {
+{
+"256
+[; ;KeyPad.c: 256:   case 0: u8ReturnVal = 1;
+[e :U 52 ]
+[e = _u8ReturnVal -> -> 1 `i `uc ]
+"257
+[; ;KeyPad.c: 257:    break;
+[e $U 50  ]
+"258
+[; ;KeyPad.c: 258:   case 1: u8ReturnVal = 2;
+[e :U 53 ]
+[e = _u8ReturnVal -> -> 2 `i `uc ]
+"259
+[; ;KeyPad.c: 259:    break;
+[e $U 50  ]
+"260
+[; ;KeyPad.c: 260:   case 2: u8ReturnVal = 3;
+[e :U 54 ]
+[e = _u8ReturnVal -> -> 3 `i `uc ]
+"261
+[; ;KeyPad.c: 261:    break;
+[e $U 50  ]
+"267
+[; ;KeyPad.c: 267:         default:
+[e :U 55 ]
+"269
+[; ;KeyPad.c: 269:             break;
+[e $U 50  ]
+"270
+[; ;KeyPad.c: 270:   }
+}
+[e $U 50  ]
+[e :U 51 ]
+[e [\ -> _a_u8col `i , $ -> 0 `i 52
+ , $ -> 1 `i 53
+ , $ -> 2 `i 54
+ 55 ]
+[e :U 50 ]
+"271
+[; ;KeyPad.c: 271:   break;
+[e $U 26  ]
+"273
+[; ;KeyPad.c: 273:     default:
+[e :U 56 ]
+"275
+[; ;KeyPad.c: 275:         break;
+[e $U 26  ]
+"276
+[; ;KeyPad.c: 276:  }
+}
+[e $U 26  ]
+[e :U 27 ]
+[e [\ -> _a_u8row `i , $ -> 0 `i 28
+ , $ -> 1 `i 35
+ , $ -> 2 `i 42
+ , $ -> 3 `i 49
+ 56 ]
+[e :U 26 ]
+"279
+[; ;KeyPad.c: 279:  return u8ReturnVal;
+[e ) _u8ReturnVal ]
+[e $UE 25  ]
+"280
+[; ;KeyPad.c: 280: }
+[e :UE 25 ]
+}
